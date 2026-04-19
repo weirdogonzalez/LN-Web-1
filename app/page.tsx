@@ -2,7 +2,6 @@ import Hero from "@/components/Hero";
 import MarqueeBand from "@/components/MarqueeBand";
 import ValueStrip from "@/components/ValueStrip";
 import HowItWorks from "@/components/HowItWorks";
-import MenuTeaser from "@/components/MenuTeaser";
 import Pricing from "@/components/Pricing";
 import Testimonials from "@/components/Testimonials";
 import BigCTA from "@/components/BigCTA";
@@ -15,7 +14,6 @@ export default function Home() {
       <MarqueeBand />
       <ValueStrip />
       <HowItWorks />
-      <MenuTeaser />
       <Pricing />
       <Testimonials />
       <BigCTA />

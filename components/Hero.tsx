@@ -145,7 +145,7 @@ export default function Hero() {
                     display: "inline-block",
                   }}
                 />
-                Dhaka&apos;s Morning Meal Plan
+                Dhaka&apos;s Premier Meal Plan
               </span>
             </div>
 
@@ -178,7 +178,7 @@ export default function Hero() {
                     display: "block",
                     fontFamily: "Instrument Serif",
                     fontStyle: "italic",
-                    fontWeight: 400,
+                    fontWeight: 700,
                     color: "var(--accent-bright)",
                     textTransform: "none",
                     letterSpacing: "-0.02em",
@@ -198,13 +198,10 @@ export default function Hero() {
               <Link href="/subscribe" className="btn btn-primary btn-lg">
                 See pricing &amp; plans <span>→</span>
               </Link>
-              <Link href="/menu" className="btn btn-ghost">
-                View this week&apos;s menu
-              </Link>
             </div>
 
             <p className="hero-fineprint" style={{ opacity: 0 }}>
-              Flexible plans · No commitment · Skip or cancel anytime
+              10-day rotating menu · Macro-balanced meals · Delivered fresh every morning
             </p>
 
             <div style={{ marginTop: 20 }}>
@@ -218,7 +215,7 @@ export default function Hero() {
                 </div>
                 <span>
                   <span className="trust-stars">★★★★★</span>
-                  &nbsp;4.9 · 2,400+ Dhaka subscribers
+                  &nbsp;4.9 · 2,000+ Dhaka subscribers
                 </span>
               </div>
             </div>

@@ -48,6 +48,24 @@ export default function SubscribePage() {
 
   async function handleSubmit() {
     setError("");
+
+    // Client-side validation
+    const missing: string[] = [];
+    if (!fullName.trim())  missing.push("Full name");
+    if (!phone.trim())     missing.push("Phone / WhatsApp");
+    if (!email.trim())     missing.push("Email");
+    if (!dob)              missing.push("Date of birth");
+    if (!startDate)        missing.push("Preferred start date");
+    if ((deliveryLoc === "home" || deliveryLoc === "both") && !homeAddress.trim())
+      missing.push("Home address");
+    if ((deliveryLoc === "office" || deliveryLoc === "both") && !officeAddress.trim())
+      missing.push("Office address");
+
+    if (missing.length) {
+      setError(`Please fill in: ${missing.join(", ")}.`);
+      return;
+    }
+
     setLoading(true);
     try {
       const res = await fetch("/api/subscribe", {

@@ -100,7 +100,7 @@ export async function POST(req: NextRequest) {
     const res = await fetch(scriptUrl, {
       method: "POST",
       headers: { "Content-Type": "text/plain" },
-      body: JSON.stringify(safe),
+      body: JSON.stringify({ ...safe, _secret: process.env.GOOGLE_SCRIPT_SECRET }),
       redirect: "follow",
     });
     console.log("Apps Script response status:", res.status);

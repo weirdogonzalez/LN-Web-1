@@ -58,7 +58,7 @@ export default function Footer() {
             </p>
             <div style={{ marginTop: 20, display: "flex", gap: 12, alignItems: "center" }}>
               {/* Instagram */}
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" style={{ display: "block" }} aria-label="Instagram">
+              <a href="https://www.instagram.com/leannationbd/" target="_blank" rel="noopener noreferrer" style={{ display: "block" }} aria-label="Instagram">
                 <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect width="36" height="36" rx="10" fill="url(#ig-grad)"/>
                   <defs>
@@ -75,7 +75,7 @@ export default function Footer() {
                 </svg>
               </a>
               {/* Facebook */}
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ display: "block" }} aria-label="Facebook">
+              <a href="https://www.facebook.com/leannationbd" target="_blank" rel="noopener noreferrer" style={{ display: "block" }} aria-label="Facebook">
                 <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect width="36" height="36" rx="10" fill="#1877F2"/>
                   <path d="M20 13h-2c-.6 0-1 .4-1 1v2h3l-.5 3H17v8h-3v-8h-2v-3h2v-2c0-2.2 1.8-4 4-4h2v3z" fill="white"/>

@@ -138,9 +138,6 @@ export default function MenuPage() {
                           </div>
                           <div className="menu-meal-right">
                             <span className="menu-meal-name">{meal.name}</span>
-                            <span className="menu-meal-macros">
-                              {meal.cal} kcal · {meal.protein}g protein
-                            </span>
                           </div>
                         </li>
                       );

@@ -82,15 +82,13 @@ export default function BigCTA() {
       </div>
       <div className="wrap big-cta-content">
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
-          <div style={{ background: "var(--ink)", borderRadius: 12, padding: 8, display: "inline-flex" }}>
-            <Image
-              src="/logo-dark.png"
-              alt="Lean Nation"
-              width={160}
-              height={90}
-              style={{ height: 64, width: "auto", display: "block" }}
-            />
-          </div>
+          <Image
+            src="/logo.png"
+            alt="Lean Nation"
+            width={160}
+            height={90}
+            style={{ height: 64, width: "auto", display: "block" }}
+          />
         </div>
         <p className="eyebrow big-cta-eyebrow">Ready to start?</p>
         <h2 className="big-cta-headline">

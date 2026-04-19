@@ -40,14 +40,13 @@ export default function Footer() {
           <div className="footer-col">
             <Link href="/" style={{ display: "inline-flex", alignItems: "center" }}>
               <Image
-                src="/logo-light.png"
+                src="/logo.png"
                 alt="Lean Nation"
                 width={140}
                 height={79}
                 style={{
                   height: 52,
                   width: "auto",
-                  mixBlendMode: "multiply",
                   display: "block",
                 }}
               />

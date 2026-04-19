@@ -52,7 +52,7 @@ export default function Nav() {
       <div className="nav-inner">
         <Link href="/" className="nav-logo" style={{ display: "inline-flex", alignItems: "center" }}>
           <Image
-            src="/logo-light.png"
+            src="/logo.png"
             alt="Lean Nation"
             width={120}
             height={68}
@@ -60,7 +60,6 @@ export default function Nav() {
             style={{
               height: 44,
               width: "auto",
-              mixBlendMode: "multiply",
               display: "block",
             }}
           />

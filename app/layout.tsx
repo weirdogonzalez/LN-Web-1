@@ -3,7 +3,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://leannation.com.bd"),
+  metadataBase: new URL("https://leannation.fit"),
   title: "Lean Nation — Stop cooking. Start Living.",
   description:
     "Dhaka's premier meal plan. 4 chef-cooked meals a day, delivered fresh to your door every morning. Free delivery on every order.",

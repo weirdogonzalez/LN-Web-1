@@ -183,7 +183,7 @@ export const FAQ_ITEMS = [
   },
   {
     q: "How are macros tracked?",
-    a: "Our nutritionist calculates exact macros for every meal. You'll see calories, protein, carbs, and fat for every item on our menu.",
+    a: "Every meal is carefully planned with exact macros. You'll see calories, protein, carbs, and fat for every item on our menu.",
   },
   {
     q: "Can I customise meals for allergies?",

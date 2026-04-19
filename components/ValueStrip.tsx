@@ -27,7 +27,7 @@ const VALUES = [
     num: 0,
     suffix: "",
     label: "decisions",
-    desc: "Menu by our chefs. Macros by our nutritionist. You just eat.",
+    desc: "Menu by our chefs. Every meal macro-balanced. You just eat.",
     color: "var(--poppy)",
     numColor: "#fff",
     textColor: "#fff",

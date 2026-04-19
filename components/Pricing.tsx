@@ -104,7 +104,7 @@ export default function Pricing() {
               {/* Per-meal price — hero */}
               <div className={`plan-hero-price ${p.highlight ? "bold" : "dim"}`}>
                 <div className="plan-hero-label">Per meal</div>
-                <div className="plan-hero-num">৳{p.perMeal}</div>
+                <div className="plan-hero-num">৳{p.perMeal}*</div>
                 <div className="plan-hero-unit">/meal</div>
               </div>
               {/* Total price — small */}
@@ -112,7 +112,7 @@ export default function Pricing() {
                 <span className="plan-total-label">{p.totalLabel}</span>
                 <div>
                   <span style={{ fontSize: 13, fontWeight: 700, color: "var(--soft)" }}>
-                    ৳{p.price.toLocaleString()}
+                    ৳{p.price.toLocaleString()}*
                   </span>
                   <span className="plan-total-per">/{p.period}</span>
                 </div>
@@ -135,7 +135,7 @@ export default function Pricing() {
             Free delivery on all plans · Cancel anytime
           </div>
           <p style={{ fontSize: 13, color: "var(--soft)", marginTop: 12, textAlign: "center" }}>
-            Prices include 5% VAT. Questions? Message us on WhatsApp.
+            * 5% VAT will be added to all prices. Questions? Message us on WhatsApp.
           </p>
         </div>
       </div>

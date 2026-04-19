@@ -4,57 +4,96 @@ export const alt = "Lean Nation — Stop cooking. Start Living.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+const FOOD_IMG =
+  "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=85";
+
 export default async function OG() {
+  const imgData = await fetch(FOOD_IMG).then((r) => r.arrayBuffer());
+  const imgSrc = `data:image/jpeg;base64,${Buffer.from(imgData).toString("base64")}`;
+
   return new ImageResponse(
     (
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
           width: "100%",
           height: "100%",
-          background: "#FBF2DF",
+          display: "flex",
+          position: "relative",
           fontFamily: "sans-serif",
-          padding: 60,
         }}
       >
-        <div
+        {/* Food image full bleed */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={imgSrc}
+          alt=""
           style={{
-            fontSize: 28,
-            fontWeight: 800,
-            letterSpacing: 6,
-            textTransform: "uppercase",
-            color: "#6b6558",
-            marginBottom: 16,
+            position: "absolute",
+            inset: 0,
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
           }}
-        >
-          Dhaka&apos;s Premier Meal Plan
-        </div>
+        />
+
+        {/* Dark gradient overlay for text legibility */}
         <div
           style={{
-            fontSize: 150,
-            fontWeight: 900,
-            color: "#0A6F28",
-            letterSpacing: -6,
-            lineHeight: 1,
-          }}
-        >
-          LEAN NATION
-        </div>
-        <div
-          style={{
+            position: "absolute",
+            inset: 0,
             display: "flex",
-            fontSize: 64,
-            color: "#1B1A17",
-            marginTop: 40,
-            fontWeight: 700,
-            letterSpacing: -2,
+            background:
+              "linear-gradient(180deg, rgba(27,26,23,0.1) 0%, rgba(27,26,23,0.25) 40%, rgba(27,26,23,0.92) 100%)",
+          }}
+        />
+
+        {/* Text content */}
+        <div
+          style={{
+            position: "absolute",
+            left: 64,
+            right: 64,
+            bottom: 56,
+            display: "flex",
+            flexDirection: "column",
+            color: "#fff",
           }}
         >
-          <span>Stop cooking.&nbsp;</span>
-          <span style={{ fontStyle: "italic", color: "#0A6F28" }}>Start Living.</span>
+          <div
+            style={{
+              fontSize: 22,
+              fontWeight: 800,
+              letterSpacing: 5,
+              textTransform: "uppercase",
+              color: "#C9E9CF",
+              marginBottom: 14,
+            }}
+          >
+            Dhaka&apos;s Premier Meal Plan
+          </div>
+          <div
+            style={{
+              fontSize: 108,
+              fontWeight: 900,
+              letterSpacing: -4,
+              lineHeight: 1,
+              color: "#fff",
+            }}
+          >
+            LEAN NATION
+          </div>
+          <div
+            style={{
+              display: "flex",
+              fontSize: 44,
+              fontWeight: 700,
+              marginTop: 18,
+              letterSpacing: -1,
+            }}
+          >
+            <span>Stop cooking.&nbsp;</span>
+            <span style={{ fontStyle: "italic", color: "#C9E9CF" }}>Start Living.</span>
+          </div>
         </div>
       </div>
     ),

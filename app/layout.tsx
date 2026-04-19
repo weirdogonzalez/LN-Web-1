@@ -3,9 +3,23 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 
 export const metadata: Metadata = {
-  title: "Lean Nation · Dhaka's Morning Meal Plan",
+  metadataBase: new URL("https://leannation.com.bd"),
+  title: "Lean Nation — Stop cooking. Start Living.",
   description:
-    "4 meals a day, cooked overnight, at your door by 8am. No cooking, no planning, no clean-up.",
+    "Dhaka's premier meal plan. 4 chef-cooked meals a day, delivered fresh to your door every morning. Free delivery on every order.",
+  openGraph: {
+    title: "Lean Nation — Stop cooking. Start Living.",
+    description:
+      "Dhaka's premier meal plan. 4 chef-cooked meals a day, delivered fresh to your door every morning. Free delivery on every order.",
+    type: "website",
+    siteName: "Lean Nation",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lean Nation — Stop cooking. Start Living.",
+    description:
+      "Dhaka's premier meal plan. 4 chef-cooked meals a day, delivered fresh to your door every morning.",
+  },
 };
 
 export default function RootLayout({

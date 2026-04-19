@@ -324,7 +324,7 @@ export default function SubscribePage() {
             Confirm subscription →
           </button>
           <p style={{ fontSize: 12, color: "var(--soft)", textAlign: "center", marginTop: 12 }}>
-            Orders placed before 6pm start the next morning. Cancel anytime.
+            Orders placed before 6pm start the next morning. Free delivery included.
           </p>
         </div>
 
@@ -363,7 +363,7 @@ export default function SubscribePage() {
               <span>✓</span> Free delivery included
             </div>
             <div className="order-badge" style={{ marginTop: 6 }}>
-              <span>✓</span> Cancel or skip anytime
+              <span>✓</span> Fresh-cooked every morning
             </div>
 
             <div

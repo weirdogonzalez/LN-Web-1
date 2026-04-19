@@ -11,7 +11,7 @@ const STEPS = [
     n: 1,
     icon: "📋",
     title: "Pick your plan",
-    body: "Weekly or monthly. 2 or 4 meals a day. Change or cancel anytime — no lock-in.",
+    body: "Weekly or monthly. 2 or 4 meals a day. Free delivery on every order — no lock-in.",
   },
   {
     n: 2,

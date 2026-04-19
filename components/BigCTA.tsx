@@ -124,7 +124,7 @@ export default function BigCTA() {
             letterSpacing: 0.3,
           }}
         >
-          No commitment. Skip or cancel anytime.
+          Free delivery on every order.
         </p>
       </div>
     </div>

@@ -175,7 +175,7 @@ export const FAQ_ITEMS = [
   },
   {
     q: "Can I skip a day or week?",
-    a: "Yes — pause, skip, or cancel anytime from your dashboard. Just let us know before 6pm for the next day's delivery.",
+    a: "Yes — pause or skip anytime from your dashboard. Just let us know before 6pm for the next day's delivery.",
   },
   {
     q: "Are the meals freshly cooked?",

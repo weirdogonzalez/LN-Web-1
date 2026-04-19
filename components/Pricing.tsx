@@ -132,7 +132,7 @@ export default function Pricing() {
         <div className="pricing-center delivery-pill-wrap" style={{ opacity: 0 }}>
           <div className="free-delivery-pill">
             <span className="dot" />
-            Free delivery on all plans · Cancel anytime
+            Free delivery on all plans · Every single order
           </div>
           <p style={{ fontSize: 13, color: "var(--soft)", marginTop: 12, textAlign: "center" }}>
             * 5% VAT will be added to all prices. Questions? Message us on WhatsApp.

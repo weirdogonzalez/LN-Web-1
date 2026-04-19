@@ -851,12 +851,12 @@ input, textarea, select { font-family: inherit; }
   margin-bottom: 6px;
 }
 .menu-day-num {
-  font-family: 'Instrument Serif', serif;
+  font-family: 'Inter', sans-serif;
   font-style: italic;
   font-size: clamp(56px, 6vw, 76px);
-  font-weight: 400;
+  font-weight: 900;
   color: var(--day-accent);
-  letter-spacing: -0.02em;
+  letter-spacing: -0.04em;
   line-height: 0.9;
 }
 .menu-day-macros {

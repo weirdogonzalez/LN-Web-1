@@ -10,10 +10,10 @@ import Footer from "@/components/Footer";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 const MEAL_LABELS = [
-  { key: "breakfast" as const, label: "Breakfast", time: "7:30a" },
-  { key: "lunch" as const, label: "Lunch", time: "12:30p" },
-  { key: "snack" as const, label: "Snack", time: "4:00p" },
-  { key: "dinner" as const, label: "Dinner", time: "8:00p" },
+  { key: "breakfast" as const, label: "Breakfast", time: "8AM" },
+  { key: "lunch" as const, label: "Lunch", time: "12:30PM" },
+  { key: "snack" as const, label: "Snack", time: "5PM" },
+  { key: "dinner" as const, label: "Dinner", time: "8PM" },
 ];
 
 const DAY_ACCENTS: Record<number, string> = {

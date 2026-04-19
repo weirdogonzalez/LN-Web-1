@@ -9,14 +9,16 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    await fetch(scriptUrl, {
+    const res = await fetch(scriptUrl, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "text/plain" },
       body: JSON.stringify(body),
       redirect: "follow",
     });
+    console.log("Apps Script response status:", res.status);
     return NextResponse.json({ success: true });
-  } catch {
+  } catch (err) {
+    console.error("Apps Script fetch error:", err);
     return NextResponse.json({ error: "Failed to submit to sheet" }, { status: 500 });
   }
 }

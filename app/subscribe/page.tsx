@@ -133,8 +133,7 @@ export default function SubscribePage() {
             You&apos;re in.
           </h1>
           <p style={{ fontSize: 18, color: "var(--soft)", lineHeight: 1.6, marginBottom: 32 }}>
-            Your first delivery will arrive <strong>tomorrow morning by 8am</strong>.
-            Expect a WhatsApp confirmation from our driver tonight.
+            Your delivery will start once you have made the payment. Please refer to the following information:
           </p>
           <div
             style={{
@@ -151,8 +150,8 @@ export default function SubscribePage() {
               What&apos;s next
             </h3>
             {[
-              "Check WhatsApp for your driver confirmation tonight",
-              "Your meals will be at your door before 8am",
+              "Check your WhatsApp for payment information — +880 1400 334043",
+              "Your meals will be delivered between 7am and 9am",
               "Manage skips & swaps over WhatsApp anytime",
             ].map((step, i) => (
               <div
@@ -188,7 +187,7 @@ export default function SubscribePage() {
             ))}
           </div>
           <Link href="/menu" className="btn btn-primary btn-lg">
-            See your first week&apos;s menu →
+            Check out our menu →
           </Link>
         </div>
       </div>

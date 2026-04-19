@@ -171,7 +171,7 @@ export default function Hero() {
                   Start
                 </span>
               </div>
-              <div className="hero-line-wrap">
+              <div className="hero-line-wrap" style={{ paddingBottom: "0.18em" }}>
                 <span
                   className="hero-word"
                   style={{

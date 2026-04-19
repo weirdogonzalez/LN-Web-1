@@ -83,8 +83,7 @@ export default function MenuPage() {
             10 days.{" "}
             <span className="italic-accent" style={{ fontSize: "0.92em" }}>
               40 meals.
-            </span>{" "}
-            Zero repeats.
+            </span>
           </h1>
           <p
             className="menu-page-hero-text"

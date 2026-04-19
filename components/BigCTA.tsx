@@ -1,7 +1,6 @@
 "use client";
 import { useRef } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -82,13 +81,9 @@ export default function BigCTA() {
       </div>
       <div className="wrap big-cta-content">
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 24 }}>
-          <Image
-            src="/logo.png"
-            alt="Lean Nation"
-            width={160}
-            height={90}
-            style={{ height: 64, width: "auto", display: "block" }}
-          />
+          <span style={{ fontFamily: "Inter, sans-serif", fontWeight: 900, fontSize: 28, letterSpacing: "0.18em", color: "var(--accent-bright)", textTransform: "uppercase" }}>
+            LEAN NATION
+          </span>
         </div>
         <p className="eyebrow big-cta-eyebrow">Ready to start?</p>
         <h2 className="big-cta-headline">

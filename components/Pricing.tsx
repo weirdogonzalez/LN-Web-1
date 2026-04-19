@@ -101,16 +101,20 @@ export default function Pricing() {
               <div style={{ fontSize: 12, color: "var(--soft)", marginTop: 2, fontWeight: 600 }}>
                 {p.freq}
               </div>
+              {/* Per-meal price — hero */}
               <div className={`plan-hero-price ${p.highlight ? "bold" : "dim"}`}>
-                <div className="plan-hero-label">From</div>
-                <div className="plan-hero-num">৳{p.price.toLocaleString()}</div>
-                <div className="plan-hero-unit">/{p.period}</div>
+                <div className="plan-hero-label">Per meal</div>
+                <div className="plan-hero-num">৳{p.perMeal}</div>
+                <div className="plan-hero-unit">/meal</div>
               </div>
+              {/* Total price — small */}
               <div className="plan-total-row">
                 <span className="plan-total-label">{p.totalLabel}</span>
                 <div>
-                  <span className="plan-total-val">৳{p.perMeal}</span>
-                  <span className="plan-total-per">/meal</span>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: "var(--soft)" }}>
+                    ৳{p.price.toLocaleString()}
+                  </span>
+                  <span className="plan-total-per">/{p.period}</span>
                 </div>
               </div>
               <div className="plan-perks">
@@ -131,7 +135,7 @@ export default function Pricing() {
             Free delivery on all plans · Cancel anytime
           </div>
           <p style={{ fontSize: 13, color: "var(--soft)", marginTop: 12, textAlign: "center" }}>
-            Prices include 5% VAT. Payment via bKash, Nagad, or card.
+            Prices include 5% VAT. Questions? Message us on WhatsApp.
           </p>
         </div>
       </div>

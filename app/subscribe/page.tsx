@@ -263,7 +263,7 @@ export default function SubscribePage() {
               </div>
               <div className="field">
                 <label>Phone / WhatsApp <span className="req">Required</span></label>
-                <input type="tel" placeholder="+880 1700 000000" />
+                <input type="tel" placeholder="+880 1400 334043" />
               </div>
             </div>
 

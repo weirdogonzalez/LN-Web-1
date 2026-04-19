@@ -12,7 +12,21 @@ export default function SubscribePage() {
   const [selectedPlan, setSelectedPlan] = useState("m4");
   const [deliveryLoc, setDeliveryLoc] = useState("home");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const pageRef = useRef<HTMLDivElement>(null);
+
+  // Controlled form state
+  const [fullName, setFullName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [dob, setDob] = useState("");
+  const [homeAddress, setHomeAddress] = useState("");
+  const [officeAddress, setOfficeAddress] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
+  const [allergies, setAllergies] = useState("");
 
   const plan = PLANS.find((p) => p.id === selectedPlan) ?? PLANS[3];
 
@@ -31,6 +45,37 @@ export default function SubscribePage() {
     },
     { scope: pageRef }
   );
+
+  async function handleSubmit() {
+    setError("");
+    setLoading(true);
+    try {
+      const res = await fetch("/api/subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          plan: `${plan.name}/day · ${plan.freq}`,
+          deliveryLoc,
+          fullName,
+          phone,
+          email,
+          dob,
+          homeAddress,
+          officeAddress,
+          startDate,
+          height,
+          weight,
+          allergies,
+        }),
+      });
+      if (!res.ok) throw new Error("Submission failed");
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please try again or message us on WhatsApp.");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   if (submitted) {
     return (
@@ -90,7 +135,7 @@ export default function SubscribePage() {
             {[
               "Check WhatsApp for your driver confirmation tonight",
               "Your meals will be at your door before 8am",
-              "Manage skips & swaps from your dashboard anytime",
+              "Manage skips & swaps over WhatsApp anytime",
             ].map((step, i) => (
               <div
                 key={i}
@@ -259,41 +304,41 @@ export default function SubscribePage() {
             <div className="fields-grid">
               <div className="field">
                 <label>Full name <span className="req">Required</span></label>
-                <input type="text" placeholder="Rumana Khan" />
+                <input type="text" placeholder="Rumana Khan" value={fullName} onChange={e => setFullName(e.target.value)} />
               </div>
               <div className="field">
                 <label>Phone / WhatsApp <span className="req">Required</span></label>
-                <input type="tel" placeholder="+880 1400 334043" />
+                <input type="tel" placeholder="+880 1400 334043" value={phone} onChange={e => setPhone(e.target.value)} />
               </div>
             </div>
 
             <div className="fields-grid">
               <div className="field">
                 <label>Email <span className="req">Required</span></label>
-                <input type="email" placeholder="you@example.com" />
+                <input type="email" placeholder="you@example.com" value={email} onChange={e => setEmail(e.target.value)} />
               </div>
               <div className="field">
                 <label>Date of birth <span className="req">Required</span></label>
-                <input type="date" />
+                <input type="date" value={dob} onChange={e => setDob(e.target.value)} />
               </div>
             </div>
 
             {(deliveryLoc === "home" || deliveryLoc === "both") && (
               <div className="field">
                 <label>Home address <span className="req">Required</span></label>
-                <textarea placeholder="Flat 4B, Road 12, Gulshan 2..." />
+                <textarea placeholder="Flat 4B, Road 12, Gulshan 2..." value={homeAddress} onChange={e => setHomeAddress(e.target.value)} />
               </div>
             )}
             {(deliveryLoc === "office" || deliveryLoc === "both") && (
               <div className="field">
                 <label>Office address <span className="req">Required</span></label>
-                <textarea placeholder="Level 5, Banani Business Tower..." />
+                <textarea placeholder="Level 5, Banani Business Tower..." value={officeAddress} onChange={e => setOfficeAddress(e.target.value)} />
               </div>
             )}
 
             <div className="field">
               <label>Preferred start date <span className="req">Required</span></label>
-              <input type="date" />
+              <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
             </div>
           </div>
 
@@ -303,25 +348,32 @@ export default function SubscribePage() {
             <div className="fields-grid">
               <div className="field">
                 <label>Height (cm) <span className="opt">Optional</span></label>
-                <input type="number" placeholder="170" />
+                <input type="number" placeholder="170" value={height} onChange={e => setHeight(e.target.value)} />
               </div>
               <div className="field">
                 <label>Weight (kg) <span className="opt">Optional</span></label>
-                <input type="number" placeholder="65" />
+                <input type="number" placeholder="65" value={weight} onChange={e => setWeight(e.target.value)} />
               </div>
             </div>
             <div className="field">
               <label>Allergies / dietary restrictions <span className="opt">Optional</span></label>
-              <textarea placeholder="e.g. nut allergy, no pork..." />
+              <textarea placeholder="e.g. nut allergy, no pork..." value={allergies} onChange={e => setAllergies(e.target.value)} />
             </div>
           </div>
 
+          {error && (
+            <p style={{ color: "var(--poppy)", fontSize: 14, marginBottom: 12, fontWeight: 600 }}>
+              {error}
+            </p>
+          )}
+
           <button
             className="btn btn-primary btn-lg"
-            style={{ width: "100%", justifyContent: "center" }}
-            onClick={() => setSubmitted(true)}
+            style={{ width: "100%", justifyContent: "center", opacity: loading ? 0.7 : 1 }}
+            onClick={handleSubmit}
+            disabled={loading}
           >
-            Confirm subscription →
+            {loading ? "Submitting…" : "Confirm subscription →"}
           </button>
           <p style={{ fontSize: 12, color: "var(--soft)", textAlign: "center", marginTop: 12 }}>
             Orders placed before 6pm start the next morning. Free delivery included.

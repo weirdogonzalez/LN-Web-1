@@ -16,12 +16,35 @@ const MEAL_LABELS = [
   { key: "dinner" as const, label: "Dinner", time: "8:00pm" },
 ];
 
-export default function MenuPage() {
-  const [activeDay, setActiveDay] = useState(1);
-  const pageRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
+const DAY_COLORS: Record<number, string> = {
+  1:  "#0A6F28",
+  2:  "#E48A1D",
+  3:  "#B83324",
+  4:  "#D4A017",
+  5:  "#2E6FB5",
+  6:  "#7A5230",
+  7:  "#5A8B2B",
+  8:  "#7A4B8C",
+  9:  "#39B54A",
+  10: "#DF2A00",
+};
 
-  const day = MENU[activeDay];
+const DAY_MACROS: Record<number, { c: number; f: number }> = {
+  1:  { c: 103, f: 32 },
+  2:  { c:  98, f: 32 },
+  3:  { c: 129, f: 40 },
+  4:  { c:  98, f: 54 },
+  5:  { c: 108, f: 48 },
+  6:  { c: 137, f: 47 },
+  7:  { c: 101, f: 43 },
+  8:  { c: 131, f: 37 },
+  9:  { c: 131, f: 37 },
+  10: { c: 141, f: 53 },
+};
+
+export default function MenuPage() {
+  const [expandedDay, setExpandedDay] = useState<number | null>(1);
+  const pageRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
     () => {
@@ -31,30 +54,16 @@ export default function MenuPage() {
         { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", stagger: 0.1 }
       );
       gsap.fromTo(
-        ".day-tab",
-        { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5, stagger: 0.04, ease: "power2.out", delay: 0.3 }
+        ".menu-table-row",
+        { y: 16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, stagger: 0.04, ease: "power2.out", delay: 0.25 }
       );
     },
     { scope: pageRef }
   );
 
-  const switchDay = (d: number) => {
-    if (!gridRef.current) return;
-    gsap.to(gridRef.current, {
-      opacity: 0,
-      y: 16,
-      duration: 0.2,
-      ease: "power2.in",
-      onComplete: () => {
-        setActiveDay(d);
-        gsap.fromTo(
-          gridRef.current,
-          { opacity: 0, y: -16 },
-          { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }
-        );
-      },
-    });
+  const toggleDay = (d: number) => {
+    setExpandedDay(expandedDay === d ? null : d);
   };
 
   return (
@@ -69,196 +78,156 @@ export default function MenuPage() {
             className="display menu-page-hero-text"
             style={{ fontSize: "clamp(48px,6vw,88px)", opacity: 0, marginTop: 8 }}
           >
-            10-day{" "}
+            10 days.{" "}
             <span className="italic-accent" style={{ fontSize: "0.92em" }}>
-              rotating cycle.
-            </span>
+              40 meals.
+            </span>{" "}
+            Zero repeats.
           </h1>
           <p
             className="menu-page-hero-text"
-            style={{ fontSize: 17, color: "var(--soft)", maxWidth: 520, marginTop: 12, opacity: 0 }}
+            style={{ fontSize: 17, color: "var(--soft)", maxWidth: 560, marginTop: 12, opacity: 0 }}
           >
             Our chefs cook a different menu every day. After 10 days, the cycle
-            repeats — keeping things fresh and your macros balanced.
+            repeats — keeping meals fresh and your macros perfectly balanced.
           </p>
-
-          {/* Day tabs */}
-          <div className="menu-days-tabs">
-            {Array.from({ length: 10 }, (_, i) => i + 1).map((d) => (
-              <button
-                key={d}
-                className={`day-tab${d === activeDay ? " active" : ""}`}
-                onClick={() => switchDay(d)}
-              >
-                Day {d}
-              </button>
-            ))}
-          </div>
         </div>
       </div>
 
-      {/* Day detail */}
-      <div style={{ background: "var(--cream)", padding: "40px 0 80px" }}>
+      {/* Menu table */}
+      <div style={{ background: "var(--cream)", padding: "48px 0 80px" }}>
         <div className="wrap">
-          <div ref={gridRef}>
-            {/* Summary bar */}
-            <div className="day-summary-bar">
-              <div>
-                <div
-                  style={{
-                    fontSize: 11,
-                    fontWeight: 800,
-                    letterSpacing: 1.5,
-                    textTransform: "uppercase",
-                    color: "var(--soft)",
-                  }}
-                >
-                  Day {activeDay} overview
-                </div>
-                <div
-                  style={{
-                    fontSize: 26,
-                    fontWeight: 900,
-                    letterSpacing: "-0.02em",
-                    marginTop: 2,
-                  }}
-                >
-                  {day.cal} kcal total
-                </div>
-              </div>
-              <div style={{ display: "flex", gap: 32, flexWrap: "wrap" }}>
-                {[
-                  { label: "Protein", val: `${day.protein}g` },
-                  { label: "Meals", val: "4" },
-                  { label: "Delivery", val: "8am" },
-                ].map((m) => (
-                  <div key={m.label} className="macro-item">
-                    <span className="macro-val">{m.val}</span>
-                    <span className="macro-label">{m.label}</span>
-                  </div>
-                ))}
-              </div>
-              <Link href="/subscribe" className="btn btn-primary">
-                Order this day →
-              </Link>
+          <div className="menu-table">
+            {/* Header */}
+            <div className="menu-table-head">
+              <div>Day</div>
+              <div>Breakfast</div>
+              <div>Lunch</div>
+              <div>Snack</div>
+              <div>Dinner</div>
+              <div style={{ textAlign: "right" }}>Daily nutrition</div>
             </div>
 
-            {/* Meal cards grid */}
-            <div className="day-detail">
-              {MEAL_LABELS.map(({ key, label, time }) => {
-                const meal = day[key];
-                return (
-                  <div key={key} className="meal-card" style={{ opacity: 1 }}>
-                    <div className="meal-img">
-                      <Image
-                        src={`https://images.unsplash.com/${meal.img}?auto=format&fit=crop&w=480&q=80`}
-                        alt={meal.name}
-                        fill
-                        style={{ objectFit: "cover" }}
-                        sizes="25vw"
-                      />
-                      <span className="meal-tag">{label}</span>
+            {/* Rows */}
+            {Array.from({ length: 10 }, (_, i) => i + 1).map((d) => {
+              const day = MENU[d];
+              const color = DAY_COLORS[d];
+              const macros = DAY_MACROS[d];
+              const isOpen = expandedDay === d;
+              return (
+                <div key={d} className="menu-table-row">
+                  <button
+                    className={`menu-row${isOpen ? " is-open" : ""}`}
+                    onClick={() => toggleDay(d)}
+                    aria-expanded={isOpen}
+                  >
+                    <div className="menu-row-day">
+                      <span
+                        className="day-chip"
+                        style={{ background: color, boxShadow: `3px 3px 0 var(--ink)` }}
+                      >
+                        <span className="day-chip-label">Day</span>
+                        <span className="day-chip-num">{d}</span>
+                      </span>
                     </div>
-                    <div className="meal-body">
-                      <div className="meal-title">{meal.name}</div>
-                      <div className="meal-macros">
-                        <span className="pill">
-                          <b>{meal.cal}</b> kcal
-                        </span>
-                        <span className="pill">
-                          <b>{meal.protein}g</b> protein
-                        </span>
+                    <div className="menu-row-meal" data-label="Breakfast">{day.breakfast.name}</div>
+                    <div className="menu-row-meal" data-label="Lunch">{day.lunch.name}</div>
+                    <div className="menu-row-meal" data-label="Snack">{day.snack.name}</div>
+                    <div className="menu-row-meal" data-label="Dinner">{day.dinner.name}</div>
+                    <div className="menu-row-nutri">
+                      <div className="menu-row-kcal" style={{ color }}>
+                        {day.cal} kcal
                       </div>
-                      <div className="meal-time">Ready by {time}</div>
+                      <div className="menu-row-sub">
+                        C: <b>{macros.c}g</b> · F: <b>{macros.f}g</b>
+                      </div>
+                      <div className="menu-row-sub">
+                        P: <b>{day.protein}g</b>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
+                  </button>
+
+                  {/* Expanded: meal photos */}
+                  {isOpen && (
+                    <div className="menu-row-expanded">
+                      {MEAL_LABELS.map(({ key, label, time }) => {
+                        const meal = day[key];
+                        return (
+                          <div key={key} className="meal-card">
+                            <div className="meal-img">
+                              <Image
+                                src={`https://images.unsplash.com/${meal.img}?auto=format&fit=crop&w=480&q=80`}
+                                alt={meal.name}
+                                fill
+                                style={{ objectFit: "cover" }}
+                                sizes="25vw"
+                              />
+                              <span className="meal-tag">{label}</span>
+                            </div>
+                            <div className="meal-body">
+                              <div className="meal-title">{meal.name}</div>
+                              <div className="meal-macros">
+                                <span className="pill">
+                                  <b>{meal.cal}</b> kcal
+                                </span>
+                                <span className="pill">
+                                  <b>{meal.protein}g</b> protein
+                                </span>
+                              </div>
+                              <div className="meal-time">Ready by {time}</div>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
-          {/* Cycle graphic */}
-          <div style={{ marginTop: 60 }}>
-            <div className="section-head" style={{ textAlign: "left", maxWidth: "none", marginBottom: 24 }}>
-              <p className="eyebrow">Cycle structure</p>
-              <h2
-                className="section-title"
-                style={{ fontSize: "clamp(32px,3.5vw,52px)" }}
+          {/* CTA */}
+          <div
+            style={{
+              marginTop: 48,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 16,
+              flexWrap: "wrap",
+              padding: "28px 32px",
+              background: "#fff",
+              border: "1.5px solid var(--ink)",
+              borderRadius: 20,
+              boxShadow: "6px 6px 0 var(--accent)",
+            }}
+          >
+            <div>
+              <p
+                style={{
+                  fontSize: 11,
+                  fontWeight: 800,
+                  letterSpacing: 1.5,
+                  textTransform: "uppercase",
+                  color: "var(--soft)",
+                  marginBottom: 4,
+                }}
               >
-                3 cycles · 30 days
-              </h2>
+                Ready to eat?
+              </p>
+              <h3
+                style={{
+                  fontSize: "clamp(22px,2.4vw,32px)",
+                  fontWeight: 900,
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                Start your plan today — first delivery tomorrow.
+              </h3>
             </div>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "auto 1fr",
-                gap: 16,
-                alignItems: "center",
-              }}
-            >
-              {[1, 2, 3].map((cycle) => (
-                <div
-                  key={cycle}
-                  style={{
-                    display: "contents",
-                  }}
-                >
-                  <div
-                    style={{
-                      fontWeight: 900,
-                      fontSize: 13,
-                      color: "var(--accent)",
-                      background: "var(--accent-soft)",
-                      padding: "6px 12px",
-                      borderRadius: 8,
-                      border: "1.5px solid var(--accent)",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    Cycle {cycle}
-                  </div>
-                  <div
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "repeat(10, 1fr)",
-                      gap: 6,
-                    }}
-                  >
-                    {Array.from({ length: 10 }, (_, i) => i + 1).map((d) => (
-                      <div
-                        key={d}
-                        onClick={() => switchDay(d)}
-                        style={{
-                          aspectRatio: "1",
-                          borderRadius: 10,
-                          background:
-                            d === activeDay
-                              ? "var(--ink)"
-                              : "var(--accent)",
-                          color: "#fff",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          fontWeight: 800,
-                          fontSize: 13,
-                          border: "1.5px solid var(--ink)",
-                          cursor: "pointer",
-                          transition: "transform 0.15s ease",
-                        }}
-                        onMouseEnter={(e) =>
-                          ((e.target as HTMLElement).style.transform = "scale(1.1)")
-                        }
-                        onMouseLeave={(e) =>
-                          ((e.target as HTMLElement).style.transform = "scale(1)")
-                        }
-                      >
-                        {d}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
+            <Link href="/subscribe" className="btn btn-primary btn-lg">
+              Start your plan →
+            </Link>
           </div>
         </div>
       </div>

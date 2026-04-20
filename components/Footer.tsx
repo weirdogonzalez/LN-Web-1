@@ -122,29 +122,13 @@ export default function Footer() {
                 </a>
               </li>
               <li style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <svg
-                  width="28"
-                  height="28"
-                  viewBox="0 0 72 72"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-label="bKash"
-                  style={{ display: "block", flexShrink: 0 }}
-                >
-                  <rect width="72" height="72" rx="12" fill="#E2136E" />
-                  <g fill="#fff">
-                    <polygon points="22,20 40,22 32,34" />
-                    <polygon points="40,22 52,28 32,34" />
-                    <polygon points="52,28 58,36 44,36" />
-                    <polygon points="58,36 50,40 44,36" />
-                    <polygon points="44,36 50,40 42,48" />
-                    <polygon points="42,48 32,46 36,56" />
-                    <polygon points="32,34 44,36 32,46" />
-                    <polygon points="22,20 32,34 20,40" />
-                    <polygon points="20,40 32,34 32,46" />
-                    <polygon points="20,40 32,46 16,54" />
-                    <polygon points="54,18 62,16 54,26" />
-                  </g>
-                </svg>
+                <Image
+                  src="/bKash-Logo.png"
+                  alt="bKash"
+                  width={28}
+                  height={28}
+                  style={{ display: "block", flexShrink: 0, borderRadius: 6 }}
+                />
                 <span>bKash: 01404 001040</span>
               </li>
             </ul>

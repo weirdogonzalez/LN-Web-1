@@ -30,6 +30,19 @@ export default function SubscribePage() {
 
   const plan = PLANS.find((p) => p.id === selectedPlan) ?? PLANS[3];
 
+  // Date constraints
+  const MIN_AGE = 15;
+  const MAX_START_DAYS_AHEAD = 30;
+  const now = new Date();
+  const toIso = (d: Date) => d.toISOString().split("T")[0];
+  const todayStr = toIso(now);
+  const maxDobDate = new Date(now);
+  maxDobDate.setFullYear(maxDobDate.getFullYear() - MIN_AGE);
+  const maxDobStr = toIso(maxDobDate);
+  const maxStartDate = new Date(now);
+  maxStartDate.setDate(maxStartDate.getDate() + MAX_START_DAYS_AHEAD);
+  const maxStartStr = toIso(maxStartDate);
+
   useGSAP(
     () => {
       gsap.fromTo(
@@ -63,6 +76,19 @@ export default function SubscribePage() {
 
     if (missing.length) {
       setError(`Please fill in: ${missing.join(", ")}.`);
+      return;
+    }
+
+    if (dob && dob > maxDobStr) {
+      setError(`You must be at least ${MIN_AGE} years old to subscribe.`);
+      return;
+    }
+    if (startDate && startDate < todayStr) {
+      setError("Start date cannot be in the past.");
+      return;
+    }
+    if (startDate && startDate > maxStartStr) {
+      setError(`Start date cannot be more than ${MAX_START_DAYS_AHEAD} days from today.`);
       return;
     }
 
@@ -336,7 +362,7 @@ export default function SubscribePage() {
               </div>
               <div className="field">
                 <label>Date of birth <span className="req">Required</span></label>
-                <input type="date" value={dob} onChange={e => setDob(e.target.value)} />
+                <input type="date" value={dob} max={maxDobStr} onChange={e => setDob(e.target.value)} />
               </div>
             </div>
 
@@ -355,7 +381,7 @@ export default function SubscribePage() {
 
             <div className="field">
               <label>Preferred start date <span className="req">Required</span></label>
-              <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
+              <input type="date" value={startDate} min={todayStr} max={maxStartStr} onChange={e => setStartDate(e.target.value)} />
             </div>
           </div>
 

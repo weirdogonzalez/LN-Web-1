@@ -29,6 +29,23 @@ function isValidDate(v: string) {
   return /^\d{4}-\d{2}-\d{2}$/.test(v) && !isNaN(Date.parse(v));
 }
 
+function ageInYears(dobStr: string): number {
+  const dob = new Date(dobStr);
+  const now = new Date();
+  let age = now.getFullYear() - dob.getFullYear();
+  const m = now.getMonth() - dob.getMonth();
+  if (m < 0 || (m === 0 && now.getDate() < dob.getDate())) age--;
+  return age;
+}
+
+function todayMidnightUTC(): Date {
+  const t = new Date();
+  return new Date(Date.UTC(t.getUTCFullYear(), t.getUTCMonth(), t.getUTCDate()));
+}
+
+const MIN_AGE = 15;
+const MAX_START_DAYS_AHEAD = 30;
+
 function cap(v: unknown, max: number): string {
   return typeof v === "string" ? v.slice(0, max).trim() : "";
 }
@@ -68,8 +85,18 @@ export async function POST(req: NextRequest) {
   else if (!isValidEmail(email)) errors.push("Email format is invalid.");
   if (!dob)                    errors.push("Date of birth is required.");
   else if (!isValidDate(dob))  errors.push("Date of birth is invalid.");
+  else if (ageInYears(dob) < MIN_AGE) errors.push(`You must be at least ${MIN_AGE} years old to subscribe.`);
+
   if (!startDate)              errors.push("Start date is required.");
   else if (!isValidDate(startDate)) errors.push("Start date is invalid.");
+  else {
+    const today = todayMidnightUTC();
+    const start = new Date(startDate + "T00:00:00Z");
+    const maxStart = new Date(today);
+    maxStart.setUTCDate(maxStart.getUTCDate() + MAX_START_DAYS_AHEAD);
+    if (start < today)          errors.push("Start date cannot be in the past.");
+    else if (start > maxStart)  errors.push(`Start date cannot be more than ${MAX_START_DAYS_AHEAD} days from today.`);
+  }
 
   if (errors.length) {
     return NextResponse.json({ error: errors.join(" ") }, { status: 400 });

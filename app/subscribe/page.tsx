@@ -181,7 +181,7 @@ export default function SubscribePage() {
             {[
               "Check your WhatsApp for payment information — +880 1400 334043",
               "Your meals will be delivered between 7am and 9am",
-              "Manage skips & swaps over WhatsApp anytime",
+              "Reach us on WhatsApp anytime if you have questions",
             ].map((step, i) => (
               <div
                 key={i}

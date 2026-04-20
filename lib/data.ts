@@ -88,7 +88,7 @@ export const PLANS = [
     perMeal: 536,
     highlight: false,
     badge: null,
-    perks: ["Breakfast + Lunch", "Skip any week", "WhatsApp support"],
+    perks: ["Breakfast + Lunch", "Delivered fresh by 8am", "WhatsApp support"],
   },
   {
     id: "m2",
@@ -103,7 +103,7 @@ export const PLANS = [
     perMeal: 433,
     highlight: false,
     badge: null,
-    perks: ["Breakfast + Lunch", "Skip any week", "Priority support"],
+    perks: ["Breakfast + Lunch", "Delivered fresh by 8am", "Priority support"],
   },
   {
     id: "w4",
@@ -118,7 +118,7 @@ export const PLANS = [
     perMeal: 357,
     highlight: false,
     badge: null,
-    perks: ["All 4 daily meals", "Macro tracking", "Meal swaps"],
+    perks: ["All 4 daily meals", "Macro tracking", "Chef-curated rotation"],
   },
   {
     id: "m4",
@@ -133,7 +133,7 @@ export const PLANS = [
     perMeal: 283,
     highlight: true,
     badge: "Best Value",
-    perks: ["All 4 daily meals", "Macro tracking", "Meal swaps", "Free nutrition consult"],
+    perks: ["All 4 daily meals", "Macro tracking", "Chef-curated rotation", "Free nutrition consult"],
   },
 ];
 
@@ -174,8 +174,8 @@ export const FAQ_ITEMS = [
     a: "We currently deliver to Gulshan, Banani, Baridhara, Dhanmondi, Uttara, and Bashundhara. More zones are coming soon.",
   },
   {
-    q: "Can I skip a day or week?",
-    a: "Yes — pause, skip, or cancel anytime over phone or WhatsApp. Just let us know before 6PM.",
+    q: "How does the subscription work?",
+    a: "Your plan runs on a fixed daily schedule — that's what lets us cook fresh and deliver on time every morning. Pick a start date and your meals arrive daily for the duration of your plan.",
   },
   {
     q: "Are the meals freshly cooked?",

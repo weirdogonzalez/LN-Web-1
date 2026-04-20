@@ -121,6 +121,27 @@ export default function Footer() {
                   WhatsApp: +880 1400 334043
                 </a>
               </li>
+              <li style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                <span
+                  aria-label="bKash"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background: "#E2136E",
+                    color: "#fff",
+                    fontWeight: 700,
+                    fontSize: 11,
+                    letterSpacing: 0.2,
+                    padding: "2px 7px",
+                    borderRadius: 4,
+                    lineHeight: 1.3,
+                  }}
+                >
+                  bKash
+                </span>
+                <span>01404 001040</span>
+              </li>
             </ul>
           </div>
         </div>

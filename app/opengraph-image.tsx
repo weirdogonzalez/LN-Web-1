@@ -1,15 +1,17 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "fs/promises";
+import path from "path";
 
+export const runtime = "nodejs";
 export const alt = "Lean Nation — Stop cooking. Start Living.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const FOOD_IMG =
-  "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1600&q=85";
-
 export default async function OG() {
-  const imgData = await fetch(FOOD_IMG).then((r) => r.arrayBuffer());
-  const imgSrc = `data:image/jpeg;base64,${Buffer.from(imgData).toString("base64")}`;
+  const imgData = await readFile(
+    path.join(process.cwd(), "public", "food-poke-bowl.jpg")
+  );
+  const imgSrc = `data:image/jpeg;base64,${imgData.toString("base64")}`;
 
   return new ImageResponse(
     (

@@ -230,19 +230,20 @@ export default function Hero() {
             {/* Main plate */}
             <div className="plate plate-1">
               <Image
-                src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=640&q=80"
-                alt="Fresh healthy meal bowl"
+                src="/food-poke-bowl.jpg"
+                alt="Chicken teriyaki poke bowl"
                 width={320}
                 height={320}
                 style={{ objectFit: "cover" }}
+                priority
               />
             </div>
 
             {/* Secondary plate */}
             <div className="plate plate-2">
               <Image
-                src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=400&q=80"
-                alt="Nutritious breakfast"
+                src="/food-wrap.jpg"
+                alt="Creamy chicken wrap"
                 width={200}
                 height={200}
                 style={{ objectFit: "cover" }}
@@ -252,8 +253,8 @@ export default function Hero() {
             {/* Accent plate */}
             <div className="plate plate-3">
               <Image
-                src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=320&q=80"
-                alt="Fresh salad"
+                src="/food-sandwich.jpg"
+                alt="Club sandwich"
                 width={160}
                 height={160}
                 style={{ objectFit: "cover" }}

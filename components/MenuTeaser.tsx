@@ -12,10 +12,10 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 const DAY = 3;
 const day = MENU[DAY];
 const MEALS = [
-  { tag: "Breakfast", meal: day.breakfast, time: "7:30 – 9:00am" },
-  { tag: "Lunch", meal: day.lunch, time: "12:30 – 2:00pm" },
-  { tag: "Snack", meal: day.snack, time: "4:00 – 5:00pm" },
-  { tag: "Dinner", meal: day.dinner, time: "8:00 – 9:00pm" },
+  { tag: "Breakfast", meal: day.breakfast, time: "7:30 – 9:00am", src: "/food-sandwich.jpg" },
+  { tag: "Lunch", meal: day.lunch, time: "12:30 – 2:00pm", src: "/food-poke-bowl.jpg" },
+  { tag: "Snack", meal: day.snack, time: "4:00 – 5:00pm", src: "/food-potato.jpg" },
+  { tag: "Dinner", meal: day.dinner, time: "8:00 – 9:00pm", src: "/food-noodles.jpg" },
 ];
 
 export default function MenuTeaser() {
@@ -126,11 +126,11 @@ export default function MenuTeaser() {
         </div>
 
         <div className="menu-grid">
-          {MEALS.map(({ tag, meal, time }) => (
+          {MEALS.map(({ tag, meal, time, src }) => (
             <div key={tag} className="meal-card">
               <div className="meal-img">
                 <Image
-                  src={`https://images.unsplash.com/${meal.img}?auto=format&fit=crop&w=480&q=80`}
+                  src={src}
                   alt={meal.name}
                   fill
                   style={{ objectFit: "cover" }}

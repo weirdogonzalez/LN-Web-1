@@ -10,20 +10,20 @@ const STEPS = [
   {
     n: 1,
     icon: "📋",
-    title: "Pick your plan",
+    title: "Select your plan",
     body: "Weekly or monthly. 2 or 4 meals a day. Free delivery on every order — no lock-in.",
   },
   {
     n: 2,
-    icon: "🍳",
-    title: "We cook overnight",
-    body: "Our chefs prepare your meals from scratch every night. Portion-weighed, macro-counted, fresh every morning.",
+    icon: "📝",
+    title: "Fill out the form & pay",
+    body: "Share your details and complete the payment. That's all we need to get started.",
   },
   {
     n: 3,
     icon: "🌅",
-    title: "Breakfast is waiting",
-    body: "Your full day is at your door before you wake — by 8am. Open the bag and eat.",
+    title: "We cook & deliver overnight",
+    body: "We prepare your meals overnight and have them at your door before you even wake up.",
   },
 ];
 

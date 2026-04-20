@@ -121,26 +121,31 @@ export default function Footer() {
                   WhatsApp: +880 1400 334043
                 </a>
               </li>
-              <li style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                <span
+              <li style={{ display: "flex", alignItems: "center", gap: 10 }}>
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 72 72"
+                  xmlns="http://www.w3.org/2000/svg"
                   aria-label="bKash"
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    background: "#E2136E",
-                    color: "#fff",
-                    fontWeight: 700,
-                    fontSize: 11,
-                    letterSpacing: 0.2,
-                    padding: "2px 7px",
-                    borderRadius: 4,
-                    lineHeight: 1.3,
-                  }}
+                  style={{ display: "block", flexShrink: 0 }}
                 >
-                  bKash
-                </span>
-                <span>01404 001040</span>
+                  <rect width="72" height="72" rx="12" fill="#E2136E" />
+                  <g fill="#fff">
+                    <polygon points="22,20 40,22 32,34" />
+                    <polygon points="40,22 52,28 32,34" />
+                    <polygon points="52,28 58,36 44,36" />
+                    <polygon points="58,36 50,40 44,36" />
+                    <polygon points="44,36 50,40 42,48" />
+                    <polygon points="42,48 32,46 36,56" />
+                    <polygon points="32,34 44,36 32,46" />
+                    <polygon points="22,20 32,34 20,40" />
+                    <polygon points="20,40 32,34 32,46" />
+                    <polygon points="20,40 32,46 16,54" />
+                    <polygon points="54,18 62,16 54,26" />
+                  </g>
+                </svg>
+                <span>bKash: 01404 001040</span>
               </li>
             </ul>
           </div>

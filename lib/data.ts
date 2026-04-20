@@ -167,15 +167,15 @@ export const TESTIMONIALS = [
 export const FAQ_ITEMS = [
   {
     q: "When is my food delivered?",
-    a: "Your meals are cooked overnight and delivered before 8am every morning. Our driver will send you a WhatsApp confirmation the night before.",
+    a: "Your meals are cooked overnight and delivered before 8am every morning.",
   },
   {
     q: "Which areas of Dhaka do you deliver to?",
-    a: "We currently deliver to Gulshan, Banani, Baridhara, Dhanmondi, Uttara, and Bashundhara. More zones are coming soon.",
+    a: "We deliver all over Dhaka.",
   },
   {
     q: "How does the subscription work?",
-    a: "Your plan runs on a fixed daily schedule — that's what lets us cook fresh and deliver on time every morning. Pick a start date and your meals arrive daily for the duration of your plan.",
+    a: "Your plan runs on a fixed daily schedule with a set menu — that's what lets us cook fresh, deliver on time, and keep every meal's macros and portions accurate. Pick a start date and your meals arrive daily for the duration of your plan.",
   },
   {
     q: "Are the meals freshly cooked?",
@@ -183,11 +183,11 @@ export const FAQ_ITEMS = [
   },
   {
     q: "How is the food packaged?",
-    a: "Your full day's meals arrive together in hygienic, food-safe containers designed for safe storage and freshness. Refrigerate on arrival — the food stays fresh until you're ready to eat.",
+    a: "Your full day's meals arrive together in hygienic, food-safe, microwave-safe containers designed for safe storage and freshness. Refrigerate on arrival — the food stays fresh until you're ready to eat.",
   },
   {
     q: "How do I reheat the meals?",
-    a: "Pop them in the microwave for 1–2 minutes, warm on the stovetop, or use a low oven. Instructions are included with each delivery so you can't get it wrong.",
+    a: "Our containers are microwave-safe — 1–2 minutes does it. You can also warm the food on the stovetop or in a low oven.",
   },
   {
     q: "What's on the menu? Do the meals repeat?",
@@ -203,15 +203,15 @@ export const FAQ_ITEMS = [
   },
   {
     q: "Can I customise meals for allergies?",
-    a: "Yes. During sign-up you can list any allergies or dietary restrictions. Our kitchen will adapt your meals accordingly.",
+    a: "During sign-up you can list any allergies or dietary restrictions, and our kitchen will try to adapt your meals to the best of our abilities.",
   },
   {
     q: "How do I pay?",
-    a: "We accept bKash, Nagad, and all major cards. Payment is collected monthly at the start of each cycle.",
+    a: "We accept bKash, cash, and bank transfer. We don't accept credit cards.",
   },
   {
-    q: "What if I want to change my plan?",
-    a: "You can upgrade, downgrade, or switch between weekly and monthly plans at any time from your account dashboard.",
+    q: "What is your cancellation and refund policy?",
+    a: "Unfortunately we don't offer cancellations or refunds. That said, if you're unhappy with anything please reach out — we'll do our best to accommodate you.",
   },
 ];
 

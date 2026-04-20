@@ -336,6 +336,9 @@ input, textarea, select { font-family: inherit; }
 
 .plate-badge {
   position: absolute;
+  z-index: 10;
+}
+.plate-badge-inner {
   background: var(--ink);
   color: #fff;
   padding: 8px 14px;
@@ -349,7 +352,8 @@ input, textarea, select { font-family: inherit; }
   gap: 6px;
   box-shadow: 2px 2px 0 var(--accent);
   white-space: nowrap;
-  z-index: 10;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 .plate-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-bright); flex-shrink: 0; }
 .badge-top { top: 30px; left: 50%; transform: translateX(-50%); }

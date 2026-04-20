@@ -114,17 +114,17 @@ export default function Hero() {
         delay: 2,
       });
 
-      // Per-plate cursor interaction: each plate only reacts while the
-      // cursor is directly on it. Other plates keep their idle float.
-      const plates = [
-        { sel: ".plate-1", strength: 18, tilt: 10 },
-        { sel: ".plate-2", strength: 14, tilt: 12 },
-        { sel: ".plate-3", strength: 12, tilt: 14 },
+      // Per-element cursor interaction: each plate / badge reacts on its own
+      // only while the cursor is directly on it. Others keep their idle float.
+      const targets = [
+        { sel: ".plate-1", innerSel: ".plate-inner", strength: 18, tilt: 10 },
+        { sel: ".plate-2", innerSel: ".plate-inner", strength: 14, tilt: 12 },
+        { sel: ".plate-3", innerSel: ".plate-inner", strength: 12, tilt: 14 },
       ];
       const cleanups: Array<() => void> = [];
-      plates.forEach((p) => {
-        const el = heroRef.current?.querySelector<HTMLElement>(p.sel);
-        const inner = el?.querySelector<HTMLElement>(".plate-inner");
+      targets.forEach((t) => {
+        const el = heroRef.current?.querySelector<HTMLElement>(t.sel);
+        const inner = el?.querySelector<HTMLElement>(t.innerSel);
         if (!el || !inner) return;
         const setX = gsap.quickTo(inner, "x", { duration: 0.45, ease: "power3.out" });
         const setY = gsap.quickTo(inner, "y", { duration: 0.45, ease: "power3.out" });
@@ -135,10 +135,10 @@ export default function Hero() {
           const r = el.getBoundingClientRect();
           const nx = ((e.clientX - r.left) / r.width - 0.5) * 2; // -1..1
           const ny = ((e.clientY - r.top) / r.height - 0.5) * 2;
-          setX(nx * p.strength);
-          setY(ny * p.strength);
-          setRy(nx * p.tilt);
-          setRx(-ny * p.tilt);
+          setX(nx * t.strength);
+          setY(ny * t.strength);
+          setRy(nx * t.tilt);
+          setRx(-ny * t.tilt);
         };
         const onLeave = () => {
           setX(0);
@@ -153,6 +153,46 @@ export default function Hero() {
           el.removeEventListener("mouseleave", onLeave);
         });
       });
+
+      // Badges — same pattern, but the listener attaches to the pill itself
+      // (the inner), since the outer .plate-badge has no visible area beyond
+      // the pill bounds. Use lighter movement so they feel like UI chips.
+      const badges = heroRef.current?.querySelectorAll<HTMLElement>(".plate-badge-inner");
+      badges?.forEach((inner) => {
+        const setX = gsap.quickTo(inner, "x", { duration: 0.4, ease: "power3.out" });
+        const setY = gsap.quickTo(inner, "y", { duration: 0.4, ease: "power3.out" });
+        const setRx = gsap.quickTo(inner, "rotationX", { duration: 0.4, ease: "power3.out" });
+        const setRy = gsap.quickTo(inner, "rotationY", { duration: 0.4, ease: "power3.out" });
+        const setScale = gsap.quickTo(inner, "scale", { duration: 0.4, ease: "power3.out" });
+
+        const STRENGTH = 10;
+        const TILT = 14;
+
+        const onMove = (e: MouseEvent) => {
+          const r = inner.getBoundingClientRect();
+          const nx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+          const ny = ((e.clientY - r.top) / r.height - 0.5) * 2;
+          setX(nx * STRENGTH);
+          setY(ny * STRENGTH);
+          setRy(nx * TILT);
+          setRx(-ny * TILT);
+          setScale(1.06);
+        };
+        const onLeave = () => {
+          setX(0);
+          setY(0);
+          setRx(0);
+          setRy(0);
+          setScale(1);
+        };
+        inner.addEventListener("mousemove", onMove);
+        inner.addEventListener("mouseleave", onLeave);
+        cleanups.push(() => {
+          inner.removeEventListener("mousemove", onMove);
+          inner.removeEventListener("mouseleave", onLeave);
+        });
+      });
+
       return () => cleanups.forEach((fn) => fn());
     },
     { scope: heroRef }
@@ -313,22 +353,28 @@ export default function Hero() {
               className="plate-badge badge-top"
               style={{ top: 16, left: "50%", transform: "translateX(-50%)" }}
             >
-              <span className="dot" />
-              Fresh Daily · 8am Delivery
+              <div className="plate-badge-inner">
+                <span className="dot" />
+                Free delivery · 7–9am daily
+              </div>
             </div>
             <div
               className="plate-badge"
-              style={{ bottom: 220, right: -8, fontSize: 10 }}
+              style={{ bottom: 220, right: -8 }}
             >
-              <span className="dot" style={{ background: "var(--sun)" }} />
-              1,200 kcal · 90g protein
+              <div className="plate-badge-inner" style={{ fontSize: 10 }}>
+                <span className="dot" style={{ background: "var(--sun)" }} />
+                Calorie + macro tracked
+              </div>
             </div>
             <div
               className="plate-badge"
-              style={{ bottom: 40, left: 10, fontSize: 10 }}
+              style={{ bottom: 40, left: 10 }}
             >
-              <span className="dot" />
-              Chef-cooked overnight
+              <div className="plate-badge-inner" style={{ fontSize: 10 }}>
+                <span className="dot" />
+                Free phone consult
+              </div>
             </div>
           </div>
         </div>

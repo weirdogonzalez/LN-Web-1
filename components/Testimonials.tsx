@@ -48,7 +48,7 @@ export default function Testimonials() {
     <div ref={sectionRef} className="testi">
       <div className="wrap">
         <div className="section-head testi-head" style={{ opacity: 0 }}>
-          <p className="eyebrow">What people say</p>
+          <p className="eyebrow">Loved by professionals &amp; students across Dhaka</p>
           <h2 className="section-title">
             Dhaka&apos;s quietest{" "}
             <span className="italic-accent" style={{ fontSize: "0.9em" }}>

@@ -118,7 +118,7 @@ export const PLANS = [
     perMeal: 357,
     highlight: false,
     badge: null,
-    perks: ["All 4 daily meals", "Macro tracking", "Chef-curated rotation"],
+    perks: ["All 4 daily meals", "Macro tracking", "Chef-curated rotation", "Basic workout guidance"],
   },
   {
     id: "m4",
@@ -133,7 +133,7 @@ export const PLANS = [
     perMeal: 283,
     highlight: true,
     badge: "Best Value",
-    perks: ["All 4 daily meals", "Macro tracking", "Chef-curated rotation", "Free nutrition consult"],
+    perks: ["All 4 daily meals", "Macro tracking", "Chef-curated rotation", "Free nutrition + workout consult"],
   },
 ];
 
@@ -180,6 +180,22 @@ export const FAQ_ITEMS = [
   {
     q: "Are the meals freshly cooked?",
     a: "Absolutely. Every meal is cooked from scratch the night before delivery. We use no preservatives or reheated food.",
+  },
+  {
+    q: "How is the food packaged?",
+    a: "Your full day's meals arrive together in hygienic, food-safe containers designed for safe storage and freshness. Refrigerate on arrival — the food stays fresh until you're ready to eat.",
+  },
+  {
+    q: "How do I reheat the meals?",
+    a: "Pop them in the microwave for 1–2 minutes, warm on the stovetop, or use a low oven. Instructions are included with each delivery so you can't get it wrong.",
+  },
+  {
+    q: "What's on the menu? Do the meals repeat?",
+    a: "We run a rotating 10-day menu so you get real variety without decision fatigue. New plates come in every cycle, and every meal is calorie-counted and macro-balanced.",
+  },
+  {
+    q: "Do you offer nutrition or workout guidance?",
+    a: "Yes — a free phone consultation with our team before you start, plus basic workout guidance to complement your meal plan. It's goal-oriented support tailored to your lifestyle.",
   },
   {
     q: "How are macros tracked?",

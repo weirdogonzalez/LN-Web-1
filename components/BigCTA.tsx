@@ -124,7 +124,7 @@ export default function BigCTA() {
             letterSpacing: 0.3,
           }}
         >
-          Free delivery on every order.
+          Free delivery · free consultation · no hidden charges.
         </p>
       </div>
     </div>

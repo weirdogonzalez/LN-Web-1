@@ -71,7 +71,8 @@ export default function Pricing() {
             </span>
           </h2>
           <p className="section-intro">
-            Chef-cooked. Delivered daily. For the price of takeout you&apos;d regret.
+            Chef-cooked on a rotating 10-day menu. Delivered daily. A consistent
+            routine for the price of takeout you&apos;d regret.
           </p>
         </div>
 

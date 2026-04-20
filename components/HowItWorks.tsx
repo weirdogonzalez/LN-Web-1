@@ -11,7 +11,7 @@ const STEPS = [
     n: 1,
     icon: "📋",
     title: "Select your plan",
-    body: "Weekly or monthly. 2 or 4 meals a day. Free delivery on every order — no lock-in.",
+    body: "Weekly or monthly. 2 or 4 meals a day. Not sure which? Call us for a free consultation first.",
   },
   {
     n: 2,
@@ -23,7 +23,7 @@ const STEPS = [
     n: 3,
     icon: "🌅",
     title: "We cook & deliver overnight",
-    body: "We prepare your meals overnight and have them at your door before you even wake up.",
+    body: "Your full day's meals arrive together in hygienic packaging before you wake. Just refrigerate & reheat when you're ready.",
   },
 ];
 

@@ -39,6 +39,9 @@ export default function SubscribePage() {
   const maxDobDate = new Date(now);
   maxDobDate.setFullYear(maxDobDate.getFullYear() - MIN_AGE);
   const maxDobStr = toIso(maxDobDate);
+  const minStartDate = new Date(now);
+  minStartDate.setDate(minStartDate.getDate() + 1);
+  const minStartStr = toIso(minStartDate);
   const maxStartDate = new Date(now);
   maxStartDate.setDate(maxStartDate.getDate() + MAX_START_DAYS_AHEAD);
   const maxStartStr = toIso(maxStartDate);
@@ -83,8 +86,8 @@ export default function SubscribePage() {
       setError(`You must be at least ${MIN_AGE} years old to subscribe.`);
       return;
     }
-    if (startDate && startDate < todayStr) {
-      setError("Start date cannot be in the past.");
+    if (startDate && startDate < minStartStr) {
+      setError("Start date must be at least 1 day from today.");
       return;
     }
     if (startDate && startDate > maxStartStr) {
@@ -381,7 +384,7 @@ export default function SubscribePage() {
 
             <div className="field">
               <label>Preferred start date <span className="req">Required</span></label>
-              <input type="date" value={startDate} min={todayStr} max={maxStartStr} onChange={e => setStartDate(e.target.value)} />
+              <input type="date" value={startDate} min={minStartStr} max={maxStartStr} onChange={e => setStartDate(e.target.value)} />
             </div>
           </div>
 

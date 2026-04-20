@@ -91,10 +91,12 @@ export async function POST(req: NextRequest) {
   else if (!isValidDate(startDate)) errors.push("Start date is invalid.");
   else {
     const today = todayMidnightUTC();
+    const minStart = new Date(today);
+    minStart.setUTCDate(minStart.getUTCDate() + 1);
     const start = new Date(startDate + "T00:00:00Z");
     const maxStart = new Date(today);
     maxStart.setUTCDate(maxStart.getUTCDate() + MAX_START_DAYS_AHEAD);
-    if (start < today)          errors.push("Start date cannot be in the past.");
+    if (start < minStart)       errors.push("Start date must be at least 1 day from today.");
     else if (start > maxStart)  errors.push(`Start date cannot be more than ${MAX_START_DAYS_AHEAD} days from today.`);
   }
 

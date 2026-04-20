@@ -276,7 +276,7 @@ export default function Hero() {
             </p>
 
             <div className="hero-cta-row" style={{ opacity: 0 }}>
-              <Link href="/subscribe" className="btn btn-primary btn-lg">
+              <Link href="/#pricing" className="btn btn-primary btn-lg">
                 See pricing &amp; plans <span>→</span>
               </Link>
             </div>

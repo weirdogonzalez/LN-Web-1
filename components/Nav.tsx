@@ -75,6 +75,7 @@ export default function Nav() {
               display: "block",
             }}
           />
+          <span className="nav-wordmark">Lean Nation</span>
         </Link>
 
         <div className="nav-links">

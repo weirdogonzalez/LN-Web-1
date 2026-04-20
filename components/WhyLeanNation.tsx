@@ -65,7 +65,7 @@ export default function WhyLeanNation() {
   return (
     <div
       ref={sectionRef}
-      style={{ background: "var(--cream-2)", padding: "56px 0 72px" }}
+      style={{ background: "var(--cream)", padding: "56px 0 72px" }}
     >
       <div className="wrap">
         <div

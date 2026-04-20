@@ -355,7 +355,7 @@ export default function Hero() {
             >
               <div className="plate-badge-inner">
                 <span className="dot" />
-                Free delivery · 7–9am daily
+                Fresh Daily · 8am Delivery
               </div>
             </div>
             <div
@@ -373,7 +373,7 @@ export default function Hero() {
             >
               <div className="plate-badge-inner" style={{ fontSize: 10 }}>
                 <span className="dot" />
-                Free phone consult
+                Free Phone Consultation
               </div>
             </div>
           </div>

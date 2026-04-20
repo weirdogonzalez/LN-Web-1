@@ -94,7 +94,7 @@ export default function HowItWorks() {
   );
 
   return (
-    <div ref={sectionRef} className="how-section">
+    <div ref={sectionRef} id="how-it-works" className="how-section">
       <div className="wrap">
         <div className="section-head how-head" style={{ opacity: 0 }}>
           <p className="eyebrow">How it works</p>

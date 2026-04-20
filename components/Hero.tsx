@@ -114,58 +114,46 @@ export default function Hero() {
         delay: 2,
       });
 
-      // Cursor-follow parallax on the plates — each plate reacts with its own
-      // strength so the visual feels alive. Returns to rest when cursor leaves.
-      const visual = heroRef.current?.querySelector<HTMLElement>(".hero-visual");
-      if (visual) {
-        const plates = [
-          { sel: ".plate-1 .plate-inner", strength: 28, tilt: 8 },
-          { sel: ".plate-2 .plate-inner", strength: 40, tilt: 12 },
-          { sel: ".plate-3 .plate-inner", strength: 46, tilt: 14 },
-        ];
-        const setters = plates.map((p) => {
-          const el = heroRef.current?.querySelector(p.sel);
-          return el
-            ? {
-                x: gsap.quickTo(el, "x", { duration: 0.55, ease: "power3.out" }),
-                y: gsap.quickTo(el, "y", { duration: 0.55, ease: "power3.out" }),
-                rx: gsap.quickTo(el, "rotationX", { duration: 0.55, ease: "power3.out" }),
-                ry: gsap.quickTo(el, "rotationY", { duration: 0.55, ease: "power3.out" }),
-                strength: p.strength,
-                tilt: p.tilt,
-              }
-            : null;
-        });
+      // Per-plate cursor interaction: each plate only reacts while the
+      // cursor is directly on it. Other plates keep their idle float.
+      const plates = [
+        { sel: ".plate-1", strength: 18, tilt: 10 },
+        { sel: ".plate-2", strength: 14, tilt: 12 },
+        { sel: ".plate-3", strength: 12, tilt: 14 },
+      ];
+      const cleanups: Array<() => void> = [];
+      plates.forEach((p) => {
+        const el = heroRef.current?.querySelector<HTMLElement>(p.sel);
+        const inner = el?.querySelector<HTMLElement>(".plate-inner");
+        if (!el || !inner) return;
+        const setX = gsap.quickTo(inner, "x", { duration: 0.45, ease: "power3.out" });
+        const setY = gsap.quickTo(inner, "y", { duration: 0.45, ease: "power3.out" });
+        const setRx = gsap.quickTo(inner, "rotationX", { duration: 0.45, ease: "power3.out" });
+        const setRy = gsap.quickTo(inner, "rotationY", { duration: 0.45, ease: "power3.out" });
 
         const onMove = (e: MouseEvent) => {
-          const r = visual.getBoundingClientRect();
+          const r = el.getBoundingClientRect();
           const nx = ((e.clientX - r.left) / r.width - 0.5) * 2; // -1..1
           const ny = ((e.clientY - r.top) / r.height - 0.5) * 2;
-          setters.forEach((s) => {
-            if (!s) return;
-            s.x(nx * s.strength);
-            s.y(ny * s.strength);
-            s.ry(nx * s.tilt);
-            s.rx(-ny * s.tilt);
-          });
+          setX(nx * p.strength);
+          setY(ny * p.strength);
+          setRy(nx * p.tilt);
+          setRx(-ny * p.tilt);
         };
         const onLeave = () => {
-          setters.forEach((s) => {
-            if (!s) return;
-            s.x(0);
-            s.y(0);
-            s.rx(0);
-            s.ry(0);
-          });
+          setX(0);
+          setY(0);
+          setRx(0);
+          setRy(0);
         };
-
-        visual.addEventListener("mousemove", onMove);
-        visual.addEventListener("mouseleave", onLeave);
-        return () => {
-          visual.removeEventListener("mousemove", onMove);
-          visual.removeEventListener("mouseleave", onLeave);
-        };
-      }
+        el.addEventListener("mousemove", onMove);
+        el.addEventListener("mouseleave", onLeave);
+        cleanups.push(() => {
+          el.removeEventListener("mousemove", onMove);
+          el.removeEventListener("mouseleave", onLeave);
+        });
+      });
+      return () => cleanups.forEach((fn) => fn());
     },
     { scope: heroRef }
   );

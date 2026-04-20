@@ -113,6 +113,59 @@ export default function Hero() {
         ease: "sine.inOut",
         delay: 2,
       });
+
+      // Cursor-follow parallax on the plates — each plate reacts with its own
+      // strength so the visual feels alive. Returns to rest when cursor leaves.
+      const visual = heroRef.current?.querySelector<HTMLElement>(".hero-visual");
+      if (visual) {
+        const plates = [
+          { sel: ".plate-1 .plate-inner", strength: 28, tilt: 8 },
+          { sel: ".plate-2 .plate-inner", strength: 40, tilt: 12 },
+          { sel: ".plate-3 .plate-inner", strength: 46, tilt: 14 },
+        ];
+        const setters = plates.map((p) => {
+          const el = heroRef.current?.querySelector(p.sel);
+          return el
+            ? {
+                x: gsap.quickTo(el, "x", { duration: 0.55, ease: "power3.out" }),
+                y: gsap.quickTo(el, "y", { duration: 0.55, ease: "power3.out" }),
+                rx: gsap.quickTo(el, "rotationX", { duration: 0.55, ease: "power3.out" }),
+                ry: gsap.quickTo(el, "rotationY", { duration: 0.55, ease: "power3.out" }),
+                strength: p.strength,
+                tilt: p.tilt,
+              }
+            : null;
+        });
+
+        const onMove = (e: MouseEvent) => {
+          const r = visual.getBoundingClientRect();
+          const nx = ((e.clientX - r.left) / r.width - 0.5) * 2; // -1..1
+          const ny = ((e.clientY - r.top) / r.height - 0.5) * 2;
+          setters.forEach((s) => {
+            if (!s) return;
+            s.x(nx * s.strength);
+            s.y(ny * s.strength);
+            s.ry(nx * s.tilt);
+            s.rx(-ny * s.tilt);
+          });
+        };
+        const onLeave = () => {
+          setters.forEach((s) => {
+            if (!s) return;
+            s.x(0);
+            s.y(0);
+            s.rx(0);
+            s.ry(0);
+          });
+        };
+
+        visual.addEventListener("mousemove", onMove);
+        visual.addEventListener("mouseleave", onLeave);
+        return () => {
+          visual.removeEventListener("mousemove", onMove);
+          visual.removeEventListener("mouseleave", onLeave);
+        };
+      }
     },
     { scope: heroRef }
   );
@@ -229,36 +282,42 @@ export default function Hero() {
 
             {/* Main plate */}
             <div className="plate plate-1">
-              <Image
-                src="/food-poke-bowl.jpg"
-                alt="Chicken teriyaki poke bowl"
-                width={320}
-                height={320}
-                style={{ objectFit: "cover" }}
-                priority
-              />
+              <div className="plate-inner">
+                <Image
+                  src="/food-poke-bowl.jpg"
+                  alt="Chicken teriyaki poke bowl"
+                  width={320}
+                  height={320}
+                  style={{ objectFit: "cover" }}
+                  priority
+                />
+              </div>
             </div>
 
             {/* Secondary plate */}
             <div className="plate plate-2">
-              <Image
-                src="/food-wrap.jpg"
-                alt="Creamy chicken wrap"
-                width={200}
-                height={200}
-                style={{ objectFit: "cover" }}
-              />
+              <div className="plate-inner">
+                <Image
+                  src="/food-wrap.jpg"
+                  alt="Creamy chicken wrap"
+                  width={200}
+                  height={200}
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
             </div>
 
             {/* Accent plate */}
             <div className="plate plate-3">
-              <Image
-                src="/food-sandwich.jpg"
-                alt="Club sandwich"
-                width={160}
-                height={160}
-                style={{ objectFit: "cover" }}
-              />
+              <div className="plate-inner">
+                <Image
+                  src="/food-sandwich.jpg"
+                  alt="Club sandwich"
+                  width={160}
+                  height={160}
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
             </div>
 
             {/* Badges */}

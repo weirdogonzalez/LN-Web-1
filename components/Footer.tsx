@@ -119,9 +119,6 @@ export default function Footer() {
                   WhatsApp: +880 1400 334043
                 </a>
               </li>
-              <li>Delivery zones</li>
-              <li>Manage subscription</li>
-              <li>Allergies & preferences</li>
             </ul>
           </div>
         </div>

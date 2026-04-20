@@ -297,7 +297,7 @@ input, textarea, select { font-family: inherit; }
 .hero-fineprint { margin-top: 16px; font-size: 12px; color: var(--soft); letter-spacing: 0.3px; }
 
 /* Hero visual */
-.hero-visual { position: relative; height: 600px; }
+.hero-visual { position: relative; height: 600px; perspective: 1000px; }
 .outline-word {
   position: absolute;
   inset: 0;
@@ -315,14 +315,21 @@ input, textarea, select { font-family: inherit; }
 }
 .plate {
   position: absolute;
+  opacity: 0;
+}
+.plate-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
   overflow: hidden;
   border: 6px solid #fff;
   box-shadow: 0 20px 48px rgba(0,0,0,0.16), 0 4px 12px rgba(0,0,0,0.08);
   background: var(--cream-2);
-  opacity: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
-.plate img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.plate-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .plate-1 { width: 320px; height: 320px; top: 40px; left: 50%; transform: translateX(-50%); }
 .plate-2 { width: 200px; height: 200px; bottom: 60px; left: 20px; }
 .plate-3 { width: 160px; height: 160px; top: 20px; right: 10px; }
@@ -425,7 +432,9 @@ input, textarea, select { font-family: inherit; }
 .value-desc { margin-top: 10px; font-size: 14px; color: var(--soft); line-height: 1.5; }
 
 /* ─── How It Works ─── */
-.how-section { padding: 80px 0; background: var(--cream); }
+.how-section { padding: 56px 0 64px; background: var(--cream); }
+.how-section .section-head { margin-bottom: 32px; }
+.how-section .steps-grid { margin-top: 24px; }
 .section-head { text-align: center; max-width: 720px; margin: 0 auto 48px; }
 .section-title {
   font-size: clamp(40px, 4.5vw, 68px);

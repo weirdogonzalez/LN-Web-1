@@ -81,14 +81,7 @@ export default function WhyLeanNation() {
           </h2>
         </div>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-            gap: 20,
-            marginTop: 8,
-          }}
-        >
+        <div className="why-grid">
           {BENEFITS.map((b) => (
             <div
               key={b.title}

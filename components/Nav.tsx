@@ -10,6 +10,7 @@ gsap.registerPlugin(useGSAP);
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
 
@@ -40,6 +41,17 @@ export default function Nav() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   const links = [
     { href: "/menu", label: "Menu" },
@@ -77,9 +89,43 @@ export default function Nav() {
           ))}
         </div>
 
-        <Link href="/subscribe" className="btn btn-primary btn-sm nav-cta">
+        <Link href="/subscribe" className="btn btn-primary btn-sm nav-cta nav-cta-desktop">
           Start my plan <span>→</span>
         </Link>
+
+        <button
+          type="button"
+          className="nav-burger"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span className={`nav-burger-bar${open ? " a" : ""}`} />
+          <span className={`nav-burger-bar${open ? " b" : ""}`} />
+          <span className={`nav-burger-bar${open ? " c" : ""}`} />
+        </button>
+      </div>
+
+      <div className={`nav-mobile-panel${open ? " open" : ""}`}>
+        <div className="nav-mobile-inner">
+          {links.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="nav-mobile-link"
+              onClick={() => setOpen(false)}
+            >
+              {l.label}
+            </Link>
+          ))}
+          <Link
+            href="/subscribe"
+            className="btn btn-primary btn-lg nav-mobile-cta"
+            onClick={() => setOpen(false)}
+          >
+            Start my plan <span>→</span>
+          </Link>
+        </div>
       </div>
     </nav>
   );

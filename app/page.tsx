@@ -14,9 +14,9 @@ export default function Home() {
       <Hero />
       <MarqueeBand />
       <ValueStrip />
+      <Pricing />
       <HowItWorks />
       <WhyLeanNation />
-      <Pricing />
       <Testimonials />
       <BigCTA />
       <Footer />

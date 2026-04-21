@@ -135,13 +135,14 @@ input, textarea, select { font-family: inherit; }
   background: rgba(255, 255, 255, 0.98);
 }
 .nav-logo-crop {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   overflow: hidden;
   height: 38px;
   line-height: 0;
 }
 .nav-wordmark {
-  margin-left: 10px;
+  margin-left: 4px;
   font-weight: 900;
   font-size: 18px;
   letter-spacing: 0.06em;

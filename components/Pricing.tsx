@@ -105,7 +105,7 @@ export default function Pricing() {
               {/* Per-meal price — hero */}
               <div className={`plan-hero-price ${p.highlight ? "bold" : "dim"}`}>
                 <div className="plan-hero-label">Per meal</div>
-                <div className="plan-hero-num">৳{p.perMeal}*</div>
+                <div className="plan-hero-num">৳{p.perMeal}</div>
                 <div className="plan-hero-unit">/meal</div>
               </div>
               {/* Total price — small */}

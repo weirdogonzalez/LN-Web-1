@@ -74,6 +74,7 @@ export default function Nav() {
                 height: 54,
                 width: "auto",
                 display: "block",
+                marginTop: -3,
               }}
             />
           </span>

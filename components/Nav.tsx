@@ -63,21 +63,18 @@ export default function Nav() {
     <nav ref={navRef} className={`nav${scrolled ? " scrolled" : ""}`}>
       <div className="nav-inner">
         <Link href="/" className="nav-logo" style={{ display: "inline-flex", alignItems: "center" }}>
-          <span className="nav-logo-crop">
-            <Image
-              src="/logo.png"
-              alt="Lean Nation"
-              width={120}
-              height={68}
-              priority
-              style={{
-                height: 54,
-                width: "auto",
-                display: "block",
-                marginTop: -3,
-              }}
-            />
-          </span>
+          <Image
+            src="/logo-mark.png"
+            alt="Lean Nation"
+            width={2645}
+            height={1897}
+            priority
+            style={{
+              height: 40,
+              width: "auto",
+              display: "block",
+            }}
+          />
           <span className="nav-wordmark">Lean Nation</span>
         </Link>
 

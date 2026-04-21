@@ -350,18 +350,18 @@ export default function SubscribePage() {
             <div className="fields-grid">
               <div className="field">
                 <label>Full name <span className="req">Required</span></label>
-                <input type="text" placeholder="Rumana Khan" value={fullName} onChange={e => setFullName(e.target.value)} />
+                <input type="text" value={fullName} onChange={e => setFullName(e.target.value)} />
               </div>
               <div className="field">
                 <label>Phone / WhatsApp <span className="req">Required</span></label>
-                <input type="tel" placeholder="+880 1400 334043" value={phone} onChange={e => setPhone(e.target.value)} />
+                <input type="tel" value={phone} onChange={e => setPhone(e.target.value)} />
               </div>
             </div>
 
             <div className="fields-grid">
               <div className="field">
                 <label>Email <span className="req">Required</span></label>
-                <input type="email" placeholder="you@example.com" value={email} onChange={e => setEmail(e.target.value)} />
+                <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
               </div>
               <div className="field">
                 <label>Date of birth <span className="req">Required</span></label>
@@ -372,13 +372,13 @@ export default function SubscribePage() {
             {(deliveryLoc === "home" || deliveryLoc === "both") && (
               <div className="field">
                 <label>Home address <span className="req">Required</span></label>
-                <textarea placeholder="Flat 4B, Road 12, Gulshan 2..." value={homeAddress} onChange={e => setHomeAddress(e.target.value)} />
+                <textarea value={homeAddress} onChange={e => setHomeAddress(e.target.value)} />
               </div>
             )}
             {(deliveryLoc === "office" || deliveryLoc === "both") && (
               <div className="field">
                 <label>Office address <span className="req">Required</span></label>
-                <textarea placeholder="Level 5, Banani Business Tower..." value={officeAddress} onChange={e => setOfficeAddress(e.target.value)} />
+                <textarea value={officeAddress} onChange={e => setOfficeAddress(e.target.value)} />
               </div>
             )}
 
@@ -394,16 +394,16 @@ export default function SubscribePage() {
             <div className="fields-grid">
               <div className="field">
                 <label>Height (cm) <span className="opt">Optional</span></label>
-                <input type="number" placeholder="170" value={height} onChange={e => setHeight(e.target.value)} />
+                <input type="number" value={height} onChange={e => setHeight(e.target.value)} />
               </div>
               <div className="field">
                 <label>Weight (kg) <span className="opt">Optional</span></label>
-                <input type="number" placeholder="65" value={weight} onChange={e => setWeight(e.target.value)} />
+                <input type="number" value={weight} onChange={e => setWeight(e.target.value)} />
               </div>
             </div>
             <div className="field">
               <label>Allergies / dietary restrictions <span className="opt">Optional</span></label>
-              <textarea placeholder="e.g. nut allergy, no pork..." value={allergies} onChange={e => setAllergies(e.target.value)} />
+              <textarea value={allergies} onChange={e => setAllergies(e.target.value)} />
             </div>
           </div>
 

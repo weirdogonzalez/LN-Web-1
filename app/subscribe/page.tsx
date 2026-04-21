@@ -35,7 +35,6 @@ export default function SubscribePage() {
   const MAX_START_DAYS_AHEAD = 30;
   const now = new Date();
   const toIso = (d: Date) => d.toISOString().split("T")[0];
-  const todayStr = toIso(now);
   const maxDobDate = new Date(now);
   maxDobDate.setFullYear(maxDobDate.getFullYear() - MIN_AGE);
   const maxDobStr = toIso(maxDobDate);
@@ -45,6 +44,31 @@ export default function SubscribePage() {
   const maxStartDate = new Date(now);
   maxStartDate.setDate(maxStartDate.getDate() + MAX_START_DAYS_AHEAD);
   const maxStartStr = toIso(maxStartDate);
+
+  // Format a date input as DD/MM/YYYY while user types digits
+  const formatDateAsTyping = (v: string) => {
+    const digits = v.replace(/\D/g, "").slice(0, 8);
+    if (digits.length <= 2) return digits;
+    if (digits.length <= 4) return `${digits.slice(0, 2)}/${digits.slice(2)}`;
+    return `${digits.slice(0, 2)}/${digits.slice(2, 4)}/${digits.slice(4)}`;
+  };
+
+  // Convert DD/MM/YYYY to YYYY-MM-DD; returns "" if not a real date
+  const ddmmyyyyToIso = (s: string) => {
+    const m = s.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    if (!m) return "";
+    const [, d, mo, y] = m;
+    const iso = `${y}-${mo}-${d}`;
+    const check = new Date(`${iso}T00:00:00Z`);
+    if (isNaN(check.getTime())) return "";
+    // Reject invalid calendar dates (e.g. 31/02/2025)
+    if (
+      check.getUTCFullYear() !== Number(y) ||
+      check.getUTCMonth() + 1 !== Number(mo) ||
+      check.getUTCDate() !== Number(d)
+    ) return "";
+    return iso;
+  };
 
   useGSAP(
     () => {
@@ -66,6 +90,9 @@ export default function SubscribePage() {
     setError("");
 
     // Client-side validation
+    const dobIso = ddmmyyyyToIso(dob);
+    const startIso = ddmmyyyyToIso(startDate);
+
     const missing: string[] = [];
     if (!fullName.trim())  missing.push("Full name");
     if (!phone.trim())     missing.push("Phone / WhatsApp");
@@ -82,15 +109,23 @@ export default function SubscribePage() {
       return;
     }
 
-    if (dob && dob > maxDobStr) {
+    if (dob && !dobIso) {
+      setError("Date of birth must be a valid date in DD/MM/YYYY format.");
+      return;
+    }
+    if (startDate && !startIso) {
+      setError("Start date must be a valid date in DD/MM/YYYY format.");
+      return;
+    }
+    if (dobIso && dobIso > maxDobStr) {
       setError(`You must be at least ${MIN_AGE} years old to subscribe.`);
       return;
     }
-    if (startDate && startDate < minStartStr) {
+    if (startIso && startIso < minStartStr) {
       setError("Start date must be at least 1 day from today.");
       return;
     }
-    if (startDate && startDate > maxStartStr) {
+    if (startIso && startIso > maxStartStr) {
       setError(`Start date cannot be more than ${MAX_START_DAYS_AHEAD} days from today.`);
       return;
     }
@@ -106,10 +141,10 @@ export default function SubscribePage() {
           fullName,
           phone,
           email,
-          dob,
+          dob: dobIso,
           homeAddress,
           officeAddress,
-          startDate,
+          startDate: startIso,
           height,
           weight,
           allergies,
@@ -364,8 +399,14 @@ export default function SubscribePage() {
                 <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
               </div>
               <div className="field">
-                <label>Date of birth <span className="req">Required</span></label>
-                <input type="date" value={dob} max={maxDobStr} onChange={e => setDob(e.target.value)} />
+                <label>Date of birth (DD/MM/YYYY) <span className="req">Required</span></label>
+                <input
+                  type="text"
+                  inputMode="numeric"
+                  maxLength={10}
+                  value={dob}
+                  onChange={e => setDob(formatDateAsTyping(e.target.value))}
+                />
               </div>
             </div>
 
@@ -383,8 +424,14 @@ export default function SubscribePage() {
             )}
 
             <div className="field">
-              <label>Preferred start date <span className="req">Required</span></label>
-              <input type="date" value={startDate} min={minStartStr} max={maxStartStr} onChange={e => setStartDate(e.target.value)} />
+              <label>Preferred start date (DD/MM/YYYY) <span className="req">Required</span></label>
+              <input
+                type="text"
+                inputMode="numeric"
+                maxLength={10}
+                value={startDate}
+                onChange={e => setStartDate(formatDateAsTyping(e.target.value))}
+              />
             </div>
           </div>
 

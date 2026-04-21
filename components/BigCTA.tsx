@@ -104,7 +104,7 @@ export default function BigCTA() {
           is served.
         </h2>
         <p className="big-cta-sub">
-          Chef-cooked every morning. At your door before 8am.
+          Chef-cooked every morning. At your door before 9am.
           <br />
           First delivery as early as tomorrow.
         </p>

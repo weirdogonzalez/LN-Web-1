@@ -479,7 +479,7 @@ export default function SubscribePage() {
                 📦 First delivery
               </strong>
               Place your order before 6pm today and breakfast will be
-              waiting at your door tomorrow at 8am.
+              waiting at your door tomorrow at 9am.
             </div>
           </div>
         </div>

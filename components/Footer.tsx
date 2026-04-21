@@ -53,7 +53,7 @@ export default function Footer() {
             </Link>
             <p className="footer-brand-desc">
               Dhaka&apos;s chef-cooked morning meal plan. Fresh every day,
-              at your door by 8am.
+              at your door by 9am.
             </p>
             <div style={{ marginTop: 20, display: "flex", gap: 12, alignItems: "center" }}>
               {/* Instagram */}

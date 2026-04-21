@@ -88,7 +88,7 @@ export const PLANS = [
     perMeal: 536,
     highlight: false,
     badge: null,
-    perks: ["Breakfast + Lunch", "Delivered fresh by 8am", "WhatsApp support"],
+    perks: ["Breakfast + Lunch", "Delivered fresh by 9am", "WhatsApp support"],
   },
   {
     id: "m2",
@@ -103,7 +103,7 @@ export const PLANS = [
     perMeal: 433,
     highlight: false,
     badge: null,
-    perks: ["Breakfast + Lunch", "Delivered fresh by 8am", "Priority support"],
+    perks: ["Breakfast + Lunch", "Delivered fresh by 9am", "Priority support"],
   },
   {
     id: "w4",
@@ -167,7 +167,7 @@ export const TESTIMONIALS = [
 export const FAQ_ITEMS = [
   {
     q: "When is my food delivered?",
-    a: "Your meals are cooked overnight and delivered before 8am every morning.",
+    a: "Your meals are cooked overnight and delivered before 9am every morning.",
   },
   {
     q: "Which areas of Dhaka do you deliver to?",

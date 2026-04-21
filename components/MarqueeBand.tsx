@@ -2,7 +2,7 @@ export default function MarqueeBand() {
   const items = [
     "4 Meals a Day",
     "Cooked Overnight",
-    "Delivered by 8am",
+    "Delivered by 9am",
     "Macros Counted",
     "No Commitments",
     "Chef-Crafted Daily",

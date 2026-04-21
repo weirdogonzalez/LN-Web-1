@@ -271,7 +271,7 @@ export default function Hero() {
             </div>
 
             <p className="hero-sub" style={{ opacity: 0 }}>
-              <b>4 meals a day,</b> cooked overnight, at your door by 8am —
+              <b>4 meals a day,</b> cooked overnight, at your door by 9am —
               no cooking, no planning, no clean-up.
             </p>
 
@@ -355,7 +355,7 @@ export default function Hero() {
             >
               <div className="plate-badge-inner">
                 <span className="dot" />
-                Fresh Daily · 8am Delivery
+                Fresh Daily · 9am Delivery
               </div>
             </div>
             <div

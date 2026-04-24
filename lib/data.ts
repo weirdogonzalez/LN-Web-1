@@ -78,7 +78,7 @@ export const PLANS = [
   {
     id: "w2",
     eyebrow: "Starter",
-    name: "2 Meals",
+    name: "2 Meals/day",
     freq: "Weekly",
     meals: 2,
     period: "weekly",
@@ -93,7 +93,7 @@ export const PLANS = [
   {
     id: "m2",
     eyebrow: "Popular",
-    name: "2 Meals",
+    name: "2 Meals/day",
     freq: "Monthly",
     meals: 2,
     period: "monthly",
@@ -108,7 +108,7 @@ export const PLANS = [
   {
     id: "w4",
     eyebrow: "Full Day",
-    name: "4 Meals",
+    name: "4 Meals/day",
     freq: "Weekly",
     meals: 4,
     period: "weekly",
@@ -123,7 +123,7 @@ export const PLANS = [
   {
     id: "m4",
     eyebrow: "Best Value",
-    name: "4 Meals",
+    name: "4 Meals/day",
     freq: "Monthly",
     meals: 4,
     period: "monthly",

@@ -109,7 +109,7 @@ export default function Footer() {
               <li><Link href="/menu">Our Menu</Link></li>
               <li><Link href="/#how-it-works">How it works</Link></li>
               <li><Link href="/faq">FAQ</Link></li>
-              <li>About us</li>
+              <li><Link href="/about">About us</Link></li>
             </ul>
           </div>
 

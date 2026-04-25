@@ -54,6 +54,7 @@ export default function Nav() {
   }, [open]);
 
   const links = [
+    { href: "/todaysmenu", label: "Today's Menu" },
     { href: "/menu", label: "Menu" },
     { href: "/#pricing", label: "Pricing" },
     { href: "/faq", label: "FAQ" },

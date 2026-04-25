@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import WhatsAppFab from "@/components/WhatsAppFab";
+import TodaysMenuFab from "@/components/TodaysMenuFab";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://leannation.fit"),
@@ -41,6 +42,7 @@ export default function RootLayout({
       <body>
         <Nav />
         <main>{children}</main>
+        <TodaysMenuFab />
         <WhatsAppFab />
       </body>
     </html>

@@ -11,7 +11,7 @@ export const MENU: Record<number, {
   },
   2: {
     breakfast: { name: "Butter Chicken Sandwich", cal: 340, protein: 30, img: "photo-1509722747041-616f39b57569" },
-    lunch: { name: "Steamed Chicken Salad", cal: 310, protein: 38, img: "photo-1512621776951-a57141f2eefd" },
+    lunch: { name: "Shredded Chicken", cal: 310, protein: 38, img: "photo-1512621776951-a57141f2eefd" },
     snack: { name: "Guava & Frittata", cal: 170, protein: 10, img: "photo-1494597564530-871f2b93ac55" },
     dinner: { name: "Fish Teriyaki, Brown Rice", cal: 380, protein: 39, img: "photo-1539136788836-5699e78bfc75" },
     cal: 1155, protein: 117,
@@ -38,7 +38,7 @@ export const MENU: Record<number, {
     cal: 1239, protein: 109,
   },
   6: {
-    breakfast: { name: "Doi Chira", cal: 290, protein: 12, img: "photo-1490645935967-10de6ba17061" },
+    breakfast: { name: "Peanut Butter Bread with Omelette", cal: 290, protein: 12, img: "photo-1490645935967-10de6ba17061" },
     lunch: { name: "Beef Poke Bowl", cal: 460, protein: 28, img: "photo-1546069901-ba9599a7e63c" },
     snack: { name: "Banana Bread", cal: 210, protein: 5, img: "photo-1481487196290-c152efe083f5" },
     dinner: { name: "Fish Black Pepper, Rice, Veg", cal: 330, protein: 13, img: "photo-1539136788836-5699e78bfc75" },

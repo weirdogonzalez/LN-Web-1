@@ -41,9 +41,8 @@ const DAY_MACROS: Record<number, { c: number; f: number }> = {
   10: { c: 141, f: 53 },
 };
 
-function getDhakaParts() {
+function getLocalParts() {
   const fmt = new Intl.DateTimeFormat("en-US", {
-    timeZone: "Asia/Dhaka",
     weekday: "long",
     month: "long",
     day: "numeric",
@@ -76,7 +75,7 @@ export default function TodaysMenuPage() {
   } | null>(null);
 
   useEffect(() => {
-    const parts = getDhakaParts();
+    const parts = getLocalParts();
     setToday({ ...parts, menuDay: menuDayFor(parts.day) });
   }, []);
 

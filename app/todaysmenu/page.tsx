@@ -187,7 +187,7 @@ export default function TodaysMenuPage() {
           </article>
         </div>
 
-        <div style={{ textAlign: "center", marginTop: 64 }}>
+        <div style={{ textAlign: "center", marginTop: 64, paddingBottom: 80 }}>
           <p style={{ fontSize: 15, color: "var(--soft)", marginBottom: 16 }}>
             Want this every morning at your door?
           </p>

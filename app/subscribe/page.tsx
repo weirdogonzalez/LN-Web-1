@@ -101,7 +101,7 @@ export default function SubscribePage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          plan: `${plan.name}/day · ${plan.freq}`,
+          plan: `${plan.name} · ${plan.freq}`,
           deliveryLoc,
           fullName,
           phone,
@@ -433,7 +433,7 @@ export default function SubscribePage() {
 
             <div className="order-line">
               <span style={{ color: "var(--soft)", fontSize: 13 }}>Plan</span>
-              <span style={{ fontWeight: 700 }}>{plan.name}/day · {plan.freq}</span>
+              <span style={{ fontWeight: 700 }}>{plan.name} · {plan.freq}</span>
             </div>
             <div className="order-line">
               <span style={{ color: "var(--soft)", fontSize: 13 }}>Meals included</span>

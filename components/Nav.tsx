@@ -54,13 +54,13 @@ export default function Nav() {
   }, [open]);
 
   const links = [
-    { href: "/todaysmenu", label: "Today's Menu" },
     { href: "/menu", label: "Menu" },
     { href: "/#pricing", label: "Pricing" },
     { href: "/faq", label: "FAQ" },
   ];
 
   return (
+    <>
     <nav ref={navRef} className={`nav${scrolled ? " scrolled" : ""}`}>
       <div className="nav-inner">
         <Link href="/" className="nav-logo" style={{ display: "inline-flex", alignItems: "center" }}>
@@ -107,28 +107,29 @@ export default function Nav() {
           <span className={`nav-burger-bar${open ? " c" : ""}`} />
         </button>
       </div>
+    </nav>
 
-      <div className={`nav-mobile-panel${open ? " open" : ""}`}>
-        <div className="nav-mobile-inner">
-          {links.map((l) => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="nav-mobile-link"
-              onClick={() => setOpen(false)}
-            >
-              {l.label}
-            </Link>
-          ))}
+    <div className={`nav-mobile-panel${open ? " open" : ""}`}>
+      <div className="nav-mobile-inner">
+        {links.map((l) => (
           <Link
-            href="/subscribe"
-            className="btn btn-primary btn-lg nav-mobile-cta"
+            key={l.href}
+            href={l.href}
+            className="nav-mobile-link"
             onClick={() => setOpen(false)}
           >
-            Start my plan <span>→</span>
+            {l.label}
           </Link>
-        </div>
+        ))}
+        <Link
+          href="/subscribe"
+          className="btn btn-primary btn-lg nav-mobile-cta"
+          onClick={() => setOpen(false)}
+        >
+          Start my plan <span>→</span>
+        </Link>
       </div>
-    </nav>
+    </div>
+    </>
   );
 }

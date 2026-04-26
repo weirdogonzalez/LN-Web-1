@@ -309,7 +309,7 @@ export default function SubscribePage() {
                     {p.eyebrow} · {p.freq}
                   </div>
                   <div style={{ fontSize: 20, fontWeight: 900, letterSpacing: "-0.02em", marginTop: 2 }}>
-                    {p.name}/day
+                    {p.name}
                   </div>
                   <div style={{ fontSize: 16, fontWeight: 900, color: "var(--accent)", marginTop: 6 }}>
                     ৳{p.price.toLocaleString()}/{p.period}

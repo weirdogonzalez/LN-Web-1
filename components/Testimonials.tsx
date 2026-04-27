@@ -62,7 +62,6 @@ export default function Testimonials() {
             const parts = t.quote.split(t.hi);
             return (
               <div key={i} className="testi-card" style={{ opacity: 0 }}>
-                <div className="testi-stars">{"★".repeat(t.stars)}</div>
                 <p className="testi-quote">
                   &ldquo;{parts[0]}
                   <span className="hi">{t.hi}</span>

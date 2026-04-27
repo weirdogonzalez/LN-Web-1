@@ -139,27 +139,24 @@ export const PLANS = [
 
 export const TESTIMONIALS = [
   {
-    stars: 5,
     quote: "Leannation has helped me transform my weekly meal routine with healthier yet too delicious foods. I love the khichuri thats my most fav 🤩 i highly appreciate also recommending this to everyone who wants to lead a healthier lifestyle because leannation was truly satisfying",
     hi: "khichuri thats my most fav",
     name: "Lamima Lam",
-    role: "Verified customer",
+    role: "Verified client",
     initials: "LL",
   },
   {
-    stars: 5,
     quote: "Lean Nation has genuinely made hitting my macros effortless and surprisingly enjoyable. The variety keeps things exciting, and one of the best parts of my office day is opening my meal and seeing what delicious surprise they’ve sent me.",
     hi: "best parts of my office day",
     name: "Alim Chowdhury",
-    role: "Verified customer",
+    role: "Verified client",
     initials: "AC",
   },
   {
-    stars: 5,
     quote: "Whenever I go off track, I have taken subscriptions and it has helped me reduce my appetite and sugar spike while eating tasty food every single day. Thanks to lean nation bd I have lost over 10kgs with their help. 5 star, ofcourse!",
     hi: "lost over 10kgs",
     name: "Tasmary Ahsan",
-    role: "Verified customer",
+    role: "Verified client",
     initials: "TA",
   },
 ];

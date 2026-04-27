@@ -41,14 +41,14 @@ const DAY_MACROS: Record<number, { c: number; f: number }> = {
   10: { c: 141, f: 53 },
 };
 
-function getLocalParts() {
+function getLocalParts(d: Date = new Date()) {
   const fmt = new Intl.DateTimeFormat("en-US", {
     weekday: "long",
     month: "long",
     day: "numeric",
     year: "numeric",
   });
-  const parts = fmt.formatToParts(new Date());
+  const parts = fmt.formatToParts(d);
   const map: Record<string, string> = {};
   parts.forEach((p) => { map[p.type] = p.value; });
   return {
@@ -59,6 +59,14 @@ function getLocalParts() {
   };
 }
 
+type DayInfo = {
+  weekday: string;
+  month: string;
+  day: number;
+  year: number;
+  menuDay: number;
+};
+
 function menuDayFor(dayOfMonth: number): number {
   if (dayOfMonth === 31) return 5;
   return ((dayOfMonth - 1) % 10) + 1;
@@ -66,17 +74,17 @@ function menuDayFor(dayOfMonth: number): number {
 
 export default function TodaysMenuPage() {
   const pageRef = useRef<HTMLDivElement>(null);
-  const [today, setToday] = useState<{
-    weekday: string;
-    month: string;
-    day: number;
-    year: number;
-    menuDay: number;
-  } | null>(null);
+  const [today, setToday] = useState<DayInfo | null>(null);
+  const [tomorrow, setTomorrow] = useState<DayInfo | null>(null);
 
   useEffect(() => {
-    const parts = getLocalParts();
-    setToday({ ...parts, menuDay: menuDayFor(parts.day) });
+    const todayParts = getLocalParts();
+    setToday({ ...todayParts, menuDay: menuDayFor(todayParts.day) });
+
+    const tomorrowDate = new Date();
+    tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+    const tomorrowParts = getLocalParts(tomorrowDate);
+    setTomorrow({ ...tomorrowParts, menuDay: menuDayFor(tomorrowParts.day) });
   }, []);
 
   useGSAP(
@@ -88,15 +96,63 @@ export default function TodaysMenuPage() {
         { y: 0, opacity: 1, duration: 0.7, stagger: 0.08, ease: "power3.out" }
       );
       gsap.fromTo(
-        ".today-card",
+        ".today-card, .tomorrow-card, .tomorrow-head",
         { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: "power2.out", delay: 0.3 }
+        { y: 0, opacity: 1, duration: 0.7, stagger: 0.1, ease: "power2.out", delay: 0.3 }
       );
     },
     { scope: pageRef, dependencies: [today] }
   );
 
-  if (!today) {
+  function renderCard(info: DayInfo, extraClass: string) {
+    const d = MENU[info.menuDay];
+    const m = DAY_MACROS[info.menuDay];
+    const a = DAY_ACCENTS[info.menuDay];
+    return (
+      <article
+        className={`menu-day-card ${extraClass}`}
+        style={{ ["--day-accent" as string]: a, opacity: 0 }}
+      >
+        <header className="menu-day-header">
+          <div className="menu-day-num-wrap">
+            <span className="menu-day-eyebrow">Day</span>
+            <span className="menu-day-num">
+              {info.menuDay.toString().padStart(2, "0")}
+            </span>
+          </div>
+          <div className="menu-day-macros">
+            <div className="menu-day-kcal">
+              <span className="kcal-num">{d.cal}</span>
+              <span className="kcal-unit">kcal</span>
+            </div>
+            <div className="menu-day-macro-row">
+              <span><b>{m.c}</b>g C</span>
+              <span><b>{m.f}</b>g F</span>
+              <span><b>{d.protein}</b>g P</span>
+            </div>
+          </div>
+        </header>
+        <ul className="menu-day-meals">
+          {MEAL_LABELS.map(({ key, label, time }) => {
+            const meal = d[key];
+            return (
+              <li key={key} className="menu-meal-row">
+                <div className="menu-meal-left">
+                  <span className="menu-meal-label">{label}</span>
+                  <span className="menu-meal-time">{time}</span>
+                </div>
+                <div className="menu-meal-right">
+                  <span className="menu-meal-name">{meal.name}</span>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </article>
+    );
+  }
+
+  if (!today || !tomorrow) {
     return (
       <div ref={pageRef} className="faq-page">
         <div className="wrap" style={{ minHeight: "60vh" }} />
@@ -104,10 +160,6 @@ export default function TodaysMenuPage() {
       </div>
     );
   }
-
-  const day = MENU[today.menuDay];
-  const macros = DAY_MACROS[today.menuDay];
-  const accent = DAY_ACCENTS[today.menuDay];
 
   return (
     <div ref={pageRef} className="faq-page">
@@ -141,50 +193,42 @@ export default function TodaysMenuPage() {
         </div>
 
         <div style={{ maxWidth: 640, margin: "56px auto 0" }}>
-          <article
-            className="menu-day-card today-card"
+          {renderCard(today, "today-card")}
+        </div>
+
+        <div
+          className="tomorrow-head"
+          style={{
+            maxWidth: 640,
+            margin: "64px auto 20px",
+            textAlign: "center",
+            opacity: 0,
+          }}
+        >
+          <p
+            className="eyebrow"
+            style={{ marginBottom: 6 }}
+          >
+            Tomorrow
+          </p>
+          <h2
             style={{
-              ["--day-accent" as string]: accent,
-              opacity: 0,
+              fontSize: "clamp(24px,2.6vw,32px)",
+              fontWeight: 900,
+              letterSpacing: "-0.02em",
+              color: "var(--ink)",
+              margin: 0,
             }}
           >
-            <header className="menu-day-header">
-              <div className="menu-day-num-wrap">
-                <span className="menu-day-eyebrow">Day</span>
-                <span className="menu-day-num">
-                  {today.menuDay.toString().padStart(2, "0")}
-                </span>
-              </div>
-              <div className="menu-day-macros">
-                <div className="menu-day-kcal">
-                  <span className="kcal-num">{day.cal}</span>
-                  <span className="kcal-unit">kcal</span>
-                </div>
-                <div className="menu-day-macro-row">
-                  <span><b>{macros.c}</b>g C</span>
-                  <span><b>{macros.f}</b>g F</span>
-                  <span><b>{day.protein}</b>g P</span>
-                </div>
-              </div>
-            </header>
+            {tomorrow.weekday},{" "}
+            <span className="italic-accent">
+              {tomorrow.month} {tomorrow.day}
+            </span>
+          </h2>
+        </div>
 
-            <ul className="menu-day-meals">
-              {MEAL_LABELS.map(({ key, label, time }) => {
-                const meal = day[key];
-                return (
-                  <li key={key} className="menu-meal-row">
-                    <div className="menu-meal-left">
-                      <span className="menu-meal-label">{label}</span>
-                      <span className="menu-meal-time">{time}</span>
-                    </div>
-                    <div className="menu-meal-right">
-                      <span className="menu-meal-name">{meal.name}</span>
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
-          </article>
+        <div style={{ maxWidth: 640, margin: "0 auto" }}>
+          {renderCard(tomorrow, "tomorrow-card")}
         </div>
 
         <div style={{ textAlign: "center", marginTop: 64, paddingBottom: 80 }}>

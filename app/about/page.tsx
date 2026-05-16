@@ -12,15 +12,15 @@ const TEAM = [
     initials: "FQ",
     accent: "#0A6F28",
     name: "Fuad Quader",
-    role: "Founder & Head of Operations",
-    bio: "Fuad started Lean Nation after years of juggling work, training, and the daily question of \"what's for breakfast?\" He runs the kitchen schedule, vendor relationships, and obsesses over getting hot, fresh food to your door before you start your day.",
+    role: "Co-founder",
+    bio: "Fuad is a Dhaka-based restaurateur. He started Lean Nation to bring the same care of a chef-run kitchen to people who don't have time to cook every morning.",
   },
   {
-    initials: "RK",
+    initials: "NA",
     accent: "#E48A1D",
-    name: "Rumana Khan",
-    role: "Head Chef & Menu Designer",
-    bio: "Rumana leads the kitchen and designs the rotating 10-day menu. With a background in nutrition and a decade of Dhaka restaurant experience, she balances macros, flavour, and what your grandmother would actually approve of.",
+    name: "Nadvie Ahmed",
+    role: "Co-founder",
+    bio: "Nadvie is a Dhaka-based restaurateur whose kitchens shaped how Lean Nation thinks about food — fresh, balanced, and worth looking forward to.",
   },
 ];
 
@@ -61,7 +61,7 @@ export default function AboutPage() {
             className="display about-hero-text"
             style={{ fontSize: "clamp(48px,5.5vw,80px)", opacity: 0, marginTop: 8 }}
           >
-            Two cooks.{" "}
+            Two restaurateurs.{" "}
             <span className="italic-accent" style={{ fontSize: "0.9em" }}>
               One mission.
             </span>

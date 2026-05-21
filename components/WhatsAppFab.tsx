@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { trackContact } from "@/lib/fpixel";
 
 const PHONE = "8801400334043";
 const MESSAGE = "Hi Lean Nation! I'd like to know more about your meal plans.";
@@ -14,6 +15,7 @@ export default function WhatsAppFab() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with Lean Nation on WhatsApp"
+      onClick={trackContact}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       onFocus={() => setHover(true)}

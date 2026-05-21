@@ -1,11 +1,12 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { MENU } from "@/lib/data";
 import Footer from "@/components/Footer";
+import { trackViewContent } from "@/lib/fpixel";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -44,6 +45,8 @@ const DAY_MACROS: Record<number, { c: number; f: number }> = {
 
 export default function MenuPage() {
   const pageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => { trackViewContent("Menu"); }, []);
 
   useGSAP(
     () => {

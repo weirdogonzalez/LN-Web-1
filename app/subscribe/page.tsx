@@ -1,10 +1,11 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { PLANS } from "@/lib/data";
 import Footer from "@/components/Footer";
+import { trackInitiateCheckout, trackLead, trackCompleteRegistration, trackSubscribe } from "@/lib/fpixel";
 
 gsap.registerPlugin(useGSAP);
 
@@ -29,6 +30,8 @@ export default function SubscribePage() {
   const [allergies, setAllergies] = useState("");
 
   const plan = PLANS.find((p) => p.id === selectedPlan) ?? PLANS[3];
+
+  useEffect(() => { trackInitiateCheckout(); }, []);
 
   // Date constraints
   const MIN_AGE = 15;
@@ -116,6 +119,9 @@ export default function SubscribePage() {
         }),
       });
       if (!res.ok) throw new Error("Submission failed");
+      trackLead();
+      trackCompleteRegistration();
+      trackSubscribe(plan.price);
       setSubmitted(true);
     } catch {
       setError("Something went wrong. Please try again or message us on WhatsApp.");

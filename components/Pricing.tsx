@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { PLANS } from "@/lib/data";
+import { trackViewContent, trackInitiateCheckout } from "@/lib/fpixel";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -18,7 +19,7 @@ export default function Pricing() {
       gsap.fromTo(
         ".pricing-head",
         { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", scrollTrigger: st }
+        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", scrollTrigger: { ...st, onEnter: () => trackViewContent("Pricing") } }
       );
 
       gsap.fromTo(
@@ -123,7 +124,7 @@ export default function Pricing() {
                   <div key={perk} className="plan-perk">{perk}</div>
                 ))}
               </div>
-              <Link href="/subscribe" className="plan-cta" style={{ display: "block", textDecoration: "none" }}>
+              <Link href="/subscribe" className="plan-cta" style={{ display: "block", textDecoration: "none" }} onClick={trackInitiateCheckout}>
                 Get started →
               </Link>
             </div>

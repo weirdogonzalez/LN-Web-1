@@ -3,6 +3,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import WhatsAppFab from "@/components/WhatsAppFab";
 import TodaysMenuFab from "@/components/TodaysMenuFab";
+import FacebookPixel from "@/components/FacebookPixel";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://leannation.fit"),
@@ -44,6 +45,7 @@ export default function RootLayout({
         <main>{children}</main>
         <TodaysMenuFab />
         <WhatsAppFab />
+        <FacebookPixel />
       </body>
     </html>
   );

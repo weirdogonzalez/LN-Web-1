@@ -12,8 +12,8 @@ const TEAM = [
     initials: "FQ",
     accent: "#0A6F28",
     name: "Fuad Quader",
-    role: "Co-founder",
-    bio: "Fuad is a Dhaka-based restaurateur. He started Lean Nation to bring the same care of a chef-run kitchen to people who don't have time to cook every morning.",
+    role: "Co-founder & Investor",
+    bio: "During his years in the US, Fuad grew used to how easy it was to eat healthy — convenient, reliable options on every corner. When he moved back to Bangladesh, that simply didn't exist, and he decided to build it. That's how Lean Nation began. An entrepreneur turned investor, Fuad brings experience across real estate, finance, tech, IT, and transportation to the table, all in service of one goal: making healthy eating effortless in Bangladesh.",
   },
   {
     initials: "NA",
@@ -61,9 +61,9 @@ export default function AboutPage() {
             className="display about-hero-text"
             style={{ fontSize: "clamp(48px,5.5vw,80px)", opacity: 0, marginTop: 8 }}
           >
-            Two restaurateurs.{" "}
+            Inspired abroad.{" "}
             <span className="italic-accent" style={{ fontSize: "0.9em" }}>
-              One mission.
+              Brought home.
             </span>
           </h1>
           <p
@@ -76,9 +76,9 @@ export default function AboutPage() {
               lineHeight: 1.6,
             }}
           >
-            We&apos;re a small Dhaka team that believes eating well shouldn&apos;t
-            be a daily chore. Lean Nation exists so you can stop cooking and
-            start living.
+            Lean Nation was born from a simple idea: take the discipline of a
+            professional kitchen and make it work for everyday life in Dhaka.
+            Real food. Real consistency. No compromise.
           </p>
         </div>
 

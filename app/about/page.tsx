@@ -13,14 +13,14 @@ const TEAM = [
     accent: "#0A6F28",
     name: "Fuad Quader",
     role: "Co-founder & Investor",
-    bio: "During his years in the US, Fuad grew used to how easy it was to eat healthy — convenient, reliable options on every corner. When he moved back to Bangladesh, that simply didn't exist, and he decided to build it. That's how Lean Nation began. An entrepreneur turned investor, Fuad brings experience across real estate, finance, tech, IT, and transportation to the table, all in service of one goal: making healthy eating effortless in Bangladesh.",
+    bio: "Fuad is an entrepreneur turned investor, with experience spanning real estate, finance, tech, IT, and transportation. During his years in the US, he grew used to how easy it was to eat healthy, with convenient, reliable options on every corner. When he moved back to Bangladesh, that simply didn't exist, so he decided to build it. That's how Lean Nation began: one goal, making healthy eating effortless in Bangladesh.",
   },
   {
     initials: "NA",
     accent: "#E48A1D",
     name: "Nadvie Ahmed",
     role: "Co-founder",
-    bio: "Nadvie is a Dhaka-based restaurateur whose kitchens shaped how Lean Nation thinks about food — fresh, balanced, and worth looking forward to.",
+    bio: "Nadvie is a Dhaka-based restaurateur whose kitchens shaped how Lean Nation thinks about food: fresh, balanced, and worth looking forward to.",
   },
 ];
 
